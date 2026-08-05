@@ -1,0 +1,15 @@
+Backup: legal-powerhouse_20260804_145346
+Timestamp: 2026-08-05T00:53:47Z
+Checksum: 146cf0ed0837dd79de474093f52d60897b5c5fc0821d54aee66dc2448bdf3d99
+Files:
+  - .env.local
+  - .env.example
+  - server.js
+  - brain/memory/unified-brain.js
+  - brain/server/supabase_vault_setup.sql
+  - shared/config/
+  - scripts/
+  - LICENSE
+  - README.md
+  - package.json
+  - .config-fingerprints

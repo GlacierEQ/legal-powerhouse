@@ -1,0 +1,27 @@
+{
+  "name": "casebrain-connector-hub",
+  "version": "1.0.0",
+  "description": "Unified Case Brain Connector Hub for 1FDV-23-0001009",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "compression": "^1.7.4",
+    "dotenv": "^16.3.1",
+    "axios": "^1.6.0",
+    "ws": "^8.14.2",
+    "better-sqlite3": "^9.4.3",
+    "node-cron": "^3.0.3",
+    "uuid": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

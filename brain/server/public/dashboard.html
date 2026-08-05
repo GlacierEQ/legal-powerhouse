@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaseBrain Dashboard - 1FDV-23-0001009</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0a0a0a; color: #e0e0e0; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; padding: 20px 0; border-bottom: 1px solid #333; margin-bottom: 20px; }
+        .header h1 { color: #00ff88; font-size: 2.5em; }
+        .header .subtitle { color: #888; margin-top: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: #1a1a1a; border: 1px solid #333; border-radius: 10px; padding: 20px; }
+        .card h2 { color: #00ff88; margin-bottom: 15px; font-size: 1.2em; }
+        .card .status { display: flex; justify-content: space-between; margin: 10px 0; }
+        .card .status .label { color: #888; }
+        .card .status .value { color: #fff; font-weight: bold; }
+        .badge { display: inline-block; padding: 5px 10px; border-radius: 15px; font-size: 0.8em; }
+        .badge.critical { background: #ff4444; color: #fff; }
+        .badge.high { background: #ff8800; color: #fff; }
+        .badge.medium { background: #ffcc00; color: #000; }
+        .badge.low { background: #00cc44; color: #fff; }
+        .badge.ready { background: #00ff88; color: #000; }
+        .progress-bar { height: 10px; background: #333; border-radius: 5px; overflow: hidden; margin: 10px 0; }
+        .progress-bar .fill { height: 100%; background: linear-gradient(90deg, #00ff88, #00cc66); transition: width 0.5s; }
+        .timeline { max-height: 300px; overflow-y: auto; }
+        .timeline-item { padding: 10px; border-left: 3px solid #00ff88; margin-left: 10px; margin-bottom: 10px; }
+        .timeline-item .date { color: #00ff88; font-size: 0.8em; }
+        .timeline-item .event { color: #fff; margin-top: 5px; }
+        .connectors { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .connector { display: flex; align-items: center; gap: 10px; padding: 10px; background: #222; border-radius: 5px; }
+        .connector .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .connector .dot.connected { background: #00ff88; }
+        .connector .dot.disconnected { background: #ff4444; }
+        .actions { margin-top: 20px; }
+        .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; margin-right: 10px; }
+        .btn.primary { background: #00ff88; color: #000; }
+        .btn.secondary { background: #333; color: #fff; }
+        .threat-level { text-align: center; padding: 20px; font-size: 3em; font-weight: bold; }
+        .threat-level.critical { color: #ff4444; }
+        .threat-level.high { color: #ff8800; }
+        .threat-level.medium { color: #ffcc00; }
+        .threat-level.low { color: #00cc44; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>CaseBrain Unified Dashboard</h1>
+            <div class="subtitle">Case 1FDV-23-0001009 | Mission: BRING KEKOA HOME</div>
+        </div>
+
+        <div class="grid">
+            <!-- Status Card -->
+            <div class="card">
+                <h2>System Status</h2>
+                <div class="status">
+                    <span class="label">Case:</span>
+                    <span class="value">1FDV-23-0001009</span>
+                </div>
+                <div class="status">
+                    <span class="label">Status:</span>
+                    <span class="badge ready">READY FOR FILING</span>
+                </div>
+                <div class="status">
+                    <span class="label">Evidence Ready:</span>
+                    <span class="value">87%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="fill" style="width: 87%"></div>
+                </div>
+            </div>
+
+            <!-- Custody Countdown -->
+            <div class="card">
+                <h2>Custody Countdown</h2>
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 3em; color: #00ff88;" id="countdown">30-45</div>
+                    <div style="color: #888;">Days to Target</div>
+                </div>
+                <div class="status">
+                    <span class="label">Filing Status:</span>
+                    <span class="badge ready">READY</span>
+                </div>
+            </div>
+
+            <!-- Threat Level -->
+            <div class="card">
+                <h2>Threat Assessment</h2>
+                <div class="threat-level high" id="threat-level">HIGH</div>
+                <div class="status">
+                    <span class="label">Active Threats:</span>
+                    <span class="value">3</span>
+                </div>
+                <div class="status">
+                    <span class="label">Unacknowledged Alerts:</span>
+                    <span class="value">2</span>
+                </div>
+            </div>
+
+            <!-- Connectors -->
+            <div class="card">
+                <h2>Connectors</h2>
+                <div class="connectors">
+                    <div class="connector">
+                        <div class="dot connected"></div>
+                        <span>Notion</span>
+                    </div>
+                    <div class="connector">
+                        <div class="dot connected"></div>
+                        <span>GitHub</span>
+                    </div>
+                    <div class="connector">
+                        <div class="dot connected"></div>
+                        <span>CourtListener</span>
+                    </div>
+                    <div class="connector">
+                        <div class="dot connected"></div>
+                        <span>Mem0</span>
+                    </div>
+                    <div class="connector">
+                        <div class="dot connected"></div>
+                        <span>Pinecone</span>
+                    </div>
+                    <div class="connector">
+                        <div class="dot connected"></div>
+                        <span>Supabase</span>
+                    </div>
+                    <div class="connector">
+                        <div class="dot connected"></div>
+                        <span>Linear</span>
+                    </div>
+                    <div class="connector">
+                        <div class="dot connected"></div>
+                        <span>Tasklet</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Motions Status -->
+            <div class="card">
+                <h2>Motions Status</h2>
+                <div class="status">
+                    <span class="label">CSEA Void Ab Initio:</span>
+                    <span class="badge ready">READY</span>
+                </div>
+                <div class="status">
+                    <span class="label">Rule 60(b)(4):</span>
+                    <span class="badge ready">READY</span>
+                </div>
+                <div class="status">
+                    <span class="label">Emergency Return:</span>
+                    <span class="badge ready">READY</span>
+                </div>
+                <div class="status">
+                    <span class="label">§1983 Complaint:</span>
+                    <span class="badge medium">PENDING AUDIO</span>
+                </div>
+                <div class="status">
+                    <span class="label">RICO Complaint:</span>
+                    <span class="badge medium">PENDING AUDIO</span>
+                </div>
+            </div>
+
+            <!-- Flip Cascade -->
+            <div class="card">
+                <h2>Flip Cascade</h2>
+                <div class="status">
+                    <span class="label">Teresa:</span>
+                    <span class="badge high">90% PENDING</span>
+                </div>
+                <div class="status">
+                    <span class="label">HPD Officer:</span>
+                    <span class="badge medium">85% PENDING</span>
+                </div>
+                <div class="status">
+                    <span class="label">Judge Naso:</span>
+                    <span class="badge medium">80% PENDING</span>
+                </div>
+                <div class="status">
+                    <span class="label">Brower:</span>
+                    <span class="badge medium">75% PENDING</span>
+                </div>
+                <div class="status">
+                    <span class="label">Yamatani:</span>
+                    <span class="badge low">70% PENDING</span>
+                </div>
+                <div class="status">
+                    <span class="label">Judge Shaw:</span>
+                    <span class="badge low">60% PENDING</span>
+                </div>
+            </div>
+
+            <!-- Recent Timeline -->
+            <div class="card" style="grid-column: span 2;">
+                <h2>Recent Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="date">2026-08-04</div>
+                        <div class="event">Unified Case Brain Deployed</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">2026-08-04</div>
+                        <div class="event">New Notion Token Configured</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">2026-08-03</div>
+                        <div class="event">Memory Audit Complete</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">2026-08-03</div>
+                        <div class="event">Evidence Index Created</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">2026-08-03</div>
+                        <div class="event">Case Data Integrated</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="date">2026-08-03</div>
+                        <div class="event">Quantum Nexus Built</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="btn primary" onclick="fileMotion()">File CSEA Void Motion</button>
+            <button class="btn primary" onclick="fileMotion()">File Rule 60(b)(4) Motion</button>
+            <button class="btn primary" onclick="fileMotion()">File Emergency Return Motion</button>
+            <button class="btn secondary" onclick="refreshStatus()">Refresh Status</button>
+        </div>
+    </div>
+
+    <script>
+        async function refreshStatus() {
+            try {
+                const response = await fetch('/api/status');
+                const data = await response.json();
+                console.log('Status:', data);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        function fileMotion() {
+            alert('Filing motion... (Demo mode)');
+        }
+
+        // Auto-refresh every 30 seconds
+        setInterval(refreshStatus, 30000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+{
+  "title": "Legal Powerhouse Agent System",
+  "version": "1.0.0",
+  "description": "Unified agent system combining Gatekeeper, Fiat Justitia, and Tower of Babel",
+  
+  "agents": {
+    "executive": {
+      "id": "executive",
+      "name": "Executive Orchestrator",
+      "tier": "executive",
+      "capabilities": ["route", "delegate", "escalate", "summarize"],
+      "pistons": ["stealth-justice"],
+      "description": "Top-level decision maker"
+    },
+    
+    "legal-manager": {
+      "id": "legal-manager",
+      "name": "Legal Operations Manager",
+      "tier": "manager",
+      "capabilities": ["legal-strategy", "case-management", "deadline-tracking"],
+      "pistons": ["stealth-justice", "stealth-precedent"],
+      "agents": ["motion-agent", "evidence-agent", "damages-agent"]
+    },
+    
+    "research-manager": {
+      "id": "research-manager",
+      "name": "Research Operations Manager",
+      "tier": "manager",
+      "capabilities": ["research", "analysis", "verification"],
+      "pistons": ["stealth-precedent"],
+      "agents": ["deep-researcher", "fact-checker", "citation-agent"]
+    },
+    
+    "motion-agent": {
+      "id": "motion-agent",
+      "name": "Motion Specialist",
+      "tier": "worker",
+      "capabilities": ["draft-motion", "file-motion", "track-motion"],
+      "pistons": ["stealth-justice", "stealth-argument"],
+      "templates": ["motion-dismiss", "motion-summary-judgment", "motion-preliminary-injunction"]
+    },
+    
+    "evidence-agent": {
+      "id": "evidence-agent",
+      "name": "Evidence Specialist",
+      "tier": "worker",
+      "capabilities": ["collect-evidence", "authenticate-evidence", "present-evidence"],
+      "pistons": ["stealth-evidence", "stealth-authentication"],
+      "templates": ["evidence-documentary", "evidence-expert", "evidence-digital"]
+    },
+    
+    "damages-agent": {
+      "id": "damages-agent",
+      "name": "Damages Calculator",
+      "tier": "worker",
+      "capabilities": ["calculate-damages", "present-damages", "treble-analysis"],
+      "pistons": ["stealth-damages", "stealth-calculation"],
+      "templates": ["damages-compensatory", "damages-punitive", "damages-treble-rico"]
+    },
+    
+    "constitutional-agent": {
+      "id": "constitutional-agent",
+      "name": "Constitutional Law Specialist",
+      "tier": "worker",
+      "capabilities": ["constitutional-analysis", "due-process", "equal-protection"],
+      "pistons": ["stealth-constitutional", "stealth-jurisdiction"],
+      "templates": ["complaint-1983", "complaint-rico", "motion-void-judgment"]
+    },
+    
+    "deep-researcher": {
+      "id": "deep-researcher",
+      "name": "Deep Researcher",
+      "tier": "worker",
+      "capabilities": ["web-search", "paper-analysis", "citation", "synthesis"],
+      "pistons": ["stealth-precedent"],
+      "tools": ["webfetch", "websearch", "grep"]
+    },
+    
+    "fact-checker": {
+      "id": "fact-checker",
+      "name": "Fact Checker",
+      "tier": "worker",
+      "capabilities": ["verify", "cross-reference", "validate"],
+      "pistons": ["stealth-evidence"]
+    },
+    
+    "citation-agent": {
+      "id": "citation-agent",
+      "name": "Citation Specialist",
+      "tier": "specialist",
+      "capabilities": ["cite-case", "verify-citation", "map-precedent"],
+      "pistons": ["stealth-precedent"]
+    }
+  },
+  
+  "pistons": {
+    "stealth-justice": {
+      "id": "stealth-justice",
+      "name": "Justice Engine",
+      "role": "Core legal reasoning"
+    },
+    "stealth-precedent": {
+      "id": "stealth-precedent",
+      "name": "Precedent Engine",
+      "role": "Case law research"
+    },
+    "stealth-evidence": {
+      "id": "stealth-evidence",
+      "name": "Evidence Engine",
+      "role": "Evidence management"
+    },
+    "stealth-argument": {
+      "id": "stealth-argument",
+      "name": "Argument Engine",
+      "role": "Legal argument construction"
+    },
+    "stealth-emergency": {
+      "id": "stealth-emergency",
+      "name": "Emergency Engine",
+      "role": "Emergency filings"
+    },
+    "stealth-equity": {
+      "id": "stealth-equity",
+      "name": "Equity Engine",
+      "role": "Equitable relief"
+    },
+    "stealth-constitutional": {
+      "id": "stealth-constitutional",
+      "name": "Constitutional Engine",
+      "role": "Constitutional analysis"
+    },
+    "stealth-jurisdiction": {
+      "id": "stealth-jurisdiction",
+      "name": "Jurisdiction Engine",
+      "role": "Jurisdictional analysis"
+    },
+    "stealth-damages": {
+      "id": "stealth-damages",
+      "name": "Damages Engine",
+      "role": "Damages calculation"
+    },
+    "stealth-fraud": {
+      "id": "stealth-fraud",
+      "name": "Fraud Engine",
+      "role": "Fraud detection"
+    },
+    "stealth-civil-rights": {
+      "id": "stealth-civil-rights",
+      "name": "Civil Rights Engine",
+      "role": "Civil rights analysis"
+    },
+    "stealth-enterprise": {
+      "id": "stealth-enterprise",
+      "name": "Enterprise Engine",
+      "role": "RICO enterprise analysis"
+    },
+    "stealth-transcription": {
+      "id": "stealth-transcription",
+      "name": "Transcription Engine",
+      "role": "Audio transcription"
+    },
+    "stealth-authentication": {
+      "id": "stealth-authentication",
+      "name": "Authentication Engine",
+      "role": "Evidence authentication"
+    },
+    "stealth-calculation": {
+      "id": "stealth-calculation",
+      "name": "Calculation Engine",
+      "role": "Financial calculations"
+    }
+  }
+}

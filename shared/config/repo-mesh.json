@@ -1,0 +1,80 @@
+{
+  "title": "Legal Repo Mesh",
+  "version": "1.0.0",
+  "description": "Unified connection map for all legal repositories",
+  "case": "1FDV-23-0001009",
+  "mission": "BRING KEKOA HOME",
+
+  "repos": {
+    "legal-powerhouse": {
+      "name": "Legal Powerhouse",
+      "path": "/tmp/legal-powerhouse",
+      "github": "GlacierEQ/legal-powerhouse",
+      "role": "Central hub - unified entry point",
+      "tier": "hub",
+      "components": ["colossus-gateway", "fiat-justitia", "tower-of-babel", "monolith", "casebrain"],
+      "ports": [3000],
+      "sync": ["quantum_nexus", "quantum-legal"]
+    },
+
+    "quantum_nexus": {
+      "name": "Quantum Nexus",
+      "path": "/root/quantum_nexus",
+      "role": "Memory system and brain",
+      "tier": "core",
+      "components": ["brain", "buckets", "legal", "mcp"],
+      "sync": ["legal-powerhouse"]
+    },
+
+    "quantum-legal": {
+      "name": "Quantum Legal",
+      "path": "/root/quantum-legal",
+      "role": "Legal intelligence and research",
+      "tier": "core",
+      "components": ["legal-intelligence", "legal", "mcp", "memory"],
+      "sync": ["legal-powerhouse", "quantum_nexus"]
+    },
+
+    "genesis-prime": {
+      "name": "Genesis Prime",
+      "path": "/root/genesis-prime",
+      "role": "CourtListener integration",
+      "tier": "integration",
+      "components": ["courtlistener_client"],
+      "sync": ["quantum_nexus"]
+    }
+  },
+
+  "connections": {
+    "hub-spoke": {
+      "description": "Legal Powerhouse is the central hub",
+      "hub": "legal-powerhouse",
+      "spokes": ["quantum_nexus", "quantum-legal", "genesis-prime"]
+    },
+    "data-flow": {
+      "description": "Data flows from core to hub",
+      "flow": ["quantum_nexus", "quantum-legal"] -> ["legal-powerhouse"]
+    },
+    "sync-protocol": {
+      "description": "Bidirectional sync for critical data",
+      "critical": ["case_timeline", "threats", "memories"],
+      "frequency": "on-change"
+    }
+  },
+
+  "endpoints": {
+    "legal-powerhouse": {
+      "api": "http://localhost:3000",
+      "ws": "ws://localhost:3000/ws",
+      "brain": "http://localhost:3000/api/brain",
+      "context": "http://localhost:3000/api/context"
+    }
+  },
+
+  "sync-strategy": {
+    "method": "git-subtree-or-submodule",
+    "conflict-resolution": "manual-approval",
+    "backup-before-sync": true,
+    "verify-after-sync": true
+  }
+}

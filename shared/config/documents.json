@@ -1,0 +1,110 @@
+{
+  "title": "Legal Powerhouse Document Registry",
+  "version": "1.0.0",
+  "case_id": "1FDV-23-0001009",
+  "case_name": "Kekoa Barton - Hawaii Family Court",
+  
+  "categories": {
+    "motions": {
+      "count": 5,
+      "templates": [
+        "motion-dismiss",
+        "motion-summary-judgment",
+        "motion-preliminary-injunction",
+        "motion-rule-60",
+        "motion-void-judgment"
+      ]
+    },
+    "complaints": {
+      "count": 4,
+      "templates": [
+        "complaint-1983",
+        "complaint-rico",
+        "complaint-emergency-tro",
+        "complaint-federal-jurisdiction"
+      ]
+    },
+    "evidence": {
+      "count": 5,
+      "templates": [
+        "evidence-documentary",
+        "evidence-demonstrative",
+        "evidence-expert",
+        "evidence-digital",
+        "evidence-audio"
+      ]
+    },
+    "remedies": {
+      "count": 5,
+      "templates": [
+        "damages-compensatory",
+        "damages-punitive",
+        "damages-treble-rico",
+        "remedies-injunctive",
+        "remedies-declaratory"
+      ]
+    }
+  },
+  
+  "repositories": {
+    "legal-data": [
+      "DOCKETS",
+      "EVIDENCE-VAULT-ENCRYPTED",
+      "THE_CATACLYSM",
+      "THE-CATACLYSM",
+      "the-cataclysm-master",
+      "THE_CATACLYSM_CHAT_MATRIX",
+      "CYBERTACK-1FDV-23-0001009",
+      "CASE-1FDV-23-0001009",
+      "CASE-1FDV-23-0001009-LEAN",
+      "SUPERLUMINAL_CASE_MATRIX"
+    ],
+    "context-memory": [
+      "AspenGrove-KEKOA-1FDV-23-0001009",
+      "AEON-777",
+      "Pro-AEON-777",
+      "AEON-BRAIN-777",
+      "Pro-AEON-BRAIN",
+      "mastermind"
+    ],
+    "work-product": [
+      "case-1FDV-23-0001009-legal-documents",
+      "1FDV-23-0001009-FEDERAL-WARFARE",
+      "Pro-Kekoa-Justice",
+      "apex-legal-case",
+      "book-of-breach-hawaii-family-court",
+      "CASE-LAW-ARSENAL"
+    ],
+    "legal-tech": [
+      "casey-legal-mcp-server",
+      "hawaii-family-court-legal-automation",
+      "hi-11-legal-automation",
+      "hawaii-docket-automation",
+      "jefs-legal-ai-fortress",
+      "legal-brief-pipeline",
+      "legal-brief-system",
+      "legal-motion-automation",
+      "legal-ai-userscripts",
+      "FILEBOSS",
+      "MEGA-PDF-INTELLIGENT-DOCUMENT-SYSTEM",
+      "case-brain-unified-runtime",
+      "unified-case-brain-web",
+      "casebuilder-taskade-endpoints",
+      "federal-email-evidence-toolkit",
+      "fileboss-whisperx-processor"
+    ]
+  },
+  
+  "proof_classes": [
+    "draft",
+    "researched",
+    "templated",
+    "precedent_verified",
+    "filed",
+    "argued",
+    "ruled",
+    "appellate_reviewed",
+    "supreme_certified",
+    "constitutional"
+  ]
+}
