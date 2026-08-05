@@ -1,0 +1,334 @@
+{
+  "title": "Advanced Agent Registry",
+  "version": "2.0.0",
+  "description": "Extremely useful agent types for legal operations",
+  "case": "1FDV-23-0001009",
+
+  "agent_types": {
+    "forensic-analyst": {
+      "name": "Forensic Evidence Analyst",
+      "category": "evidence",
+      "capabilities": [
+        "hash-evidence",
+        "chain-of-custody",
+        "authenticate-documents",
+        "detect-tampering",
+        "generate-forensic-report"
+      ],
+      "tools": ["sha256sum", "exiftool", "file", "strings"],
+      "use_cases": [
+        "Verify document integrity",
+        "Establish chain of custody",
+        "Detect forged documents",
+        "Authenticate digital evidence"
+      ],
+      "output_format": "forensic_report.json"
+    },
+
+    "timeline-reconstruction": {
+      "name": "Timeline Reconstruction Agent",
+      "category": "analysis",
+      "capabilities": [
+        "parse-court-dates",
+        "build-chronology",
+        "detect-gaps",
+        "calculate-deadlines",
+        "visualize-timeline"
+      ],
+      "input_sources": ["court-filings", "emails", "audio-recordings", "metadata"],
+      "use_cases": [
+        "Reconstruct case chronology",
+        "Identify missing events",
+        "Calculate statute of limitations",
+        "Prepare trial timeline"
+      ],
+      "output_format": "timeline.json"
+    },
+
+    "pattern-detector": {
+      "name": "Pattern Detection Agent",
+      "category": "intelligence",
+      "capabilities": [
+        "detect-judicial-bias",
+        "identify-procedural-violations",
+        "find-correlations",
+        "analyze-behavioral-patterns",
+        "predict-outcomes"
+      ],
+      "algorithms": ["frequency-analysis", "sequence-mining", "anomaly-detection"],
+      "use_cases": [
+        "Identify judge bias patterns",
+        "Detect coordinated misconduct",
+        "Find procedural violations",
+        "Predict case outcomes"
+      ],
+      "output_format": "pattern_report.json"
+    },
+
+    "damages-calculator": {
+      "name": "Damages Calculation Engine",
+      "category": "quantitative",
+      "capabilities": [
+        "calculate-economic-loss",
+        "compute-emotional-distress",
+        "treble-damages-rico",
+        "punitve-multiplier",
+        "future-damages-projection"
+      ],
+      "formulas": [
+        "economic: lost_wages + medical + property",
+        "emotional: base × severity × duration",
+        "rico: actual × 3",
+        "punitive: actual × 1-9"
+      ],
+      "use_cases": [
+        "Calculate compensatory damages",
+        "Compute RICO treble damages",
+        "Project future losses",
+        "Prepare damages exhibit"
+      ],
+      "output_format": "damages_report.json"
+    },
+
+    "brief-generator": {
+      "name": "Legal Brief Generator",
+      "category": " drafting",
+      "capabilities": [
+        "draft-motion",
+        "draft-complaint",
+        "draft-memo",
+        "cite-authorities",
+        "format-filing"
+      ],
+      "templates": [
+        "motion-dismiss",
+        "motion-summary-judgment",
+        "complaint-1983",
+        "complaint-rico",
+        "emergency-motion"
+      ],
+      "use_cases": [
+        "Generate court filings",
+        "Draft legal memoranda",
+        "Prepare motion briefs",
+        "Format documents for filing"
+      ],
+      "output_format": "document.docx"
+    },
+
+    "opposition-researcher": {
+      "name": "Opposition Research Agent",
+      "category": "research",
+      "capabilities": [
+        "research-adverse-party",
+        "find-contradictions",
+        "identify-impeachment",
+        "analyze-credibility",
+        "generate-dossier"
+      ],
+      "data_sources": ["court-records", "public-records", "news", "social-media"],
+      "use_cases": [
+        "Research opposing counsel",
+        "Find witness contradictions",
+        "Identify impeachment material",
+        "Prepare cross-examination"
+      ],
+      "output_format": "opposition_dossier.json"
+    },
+
+    "deadline-tracker": {
+      "name": "Deadline Management Agent",
+      "category": "operations",
+      "capabilities": [
+        "track-filing-deadlines",
+        "calculate-response-times",
+        "send-alerts",
+        "prioritize-tasks",
+        "generate-calendar"
+      ],
+      "alert_levels": ["critical", "urgent", "warning", "info"],
+      "use_cases": [
+        "Track all case deadlines",
+        "Alert for upcoming deadlines",
+        "Prioritize filing schedule",
+        "Generate court calendar"
+      ],
+      "output_format": "deadline_calendar.json"
+    },
+
+    "evidence-indexer": {
+      "name": "Evidence Indexing Agent",
+      "category": "organization",
+      "capabilities": [
+        "index-documents",
+        "extract-text",
+        "generate-exhibits",
+        "create-bates-numbers",
+        "cross-reference"
+      ],
+      "supported_formats": ["pdf", "docx", "txt", "audio", "video", "image"],
+      "use_cases": [
+        "Organize evidence library",
+        "Generate exhibit lists",
+        "Create bates-stamped copies",
+        "Cross-reference evidence"
+      ],
+      "output_format": "evidence_index.json"
+    },
+
+    "sentiment-analyzer": {
+      "name": "Courtroom Sentiment Agent",
+      "category": "analysis",
+      "capabilities": [
+        "analyze-transcripts",
+        "detect-tone",
+        "measure-credibility",
+        "identify-emotional-appeals",
+        "score-persuasion"
+      ],
+      "use_cases": [
+        "Analyze hearing transcripts",
+        "Assess witness credibility",
+        "Identify persuasion techniques",
+        "Prepare impeachment"
+      ],
+      "output_format": "sentiment_report.json"
+    },
+
+    "compliance-monitor": {
+      "name": "Compliance Monitoring Agent",
+      "category": "governance",
+      "capabilities": [
+        "monitor-court-orders",
+        "verify-compliance",
+        "detect-violations",
+        "generate-reports",
+        "escalate-issues"
+      ],
+      "use_cases": [
+        "Monitor custody orders",
+        "Verify compliance with court orders",
+        "Document violations",
+        "Generate compliance reports"
+      ],
+      "output_format": "compliance_report.json"
+    },
+
+    "appeals-strategist": {
+      "name": "Appeals Strategy Agent",
+      "category": "strategy",
+      "capabilities": [
+        "identify-appealable-issues",
+        "analyze-standards-of-review",
+        "draft-appeal-brief",
+        "predict-appellate-outcome"
+      ],
+      "standards_of_review": [
+        "de-novo",
+        "abuse-of-discretion",
+        "clearly-erroneous",
+        "substantial-evidence"
+      ],
+      "use_cases": [
+        "Identify grounds for appeal",
+        "Analyze standards of review",
+        "Draft appellate briefs",
+        "Predict appeal outcomes"
+      ],
+      "output_format": "appeal_strategy.json"
+    },
+
+    "settlement-analyzer": {
+      "name": "Settlement Analysis Agent",
+      "category": "strategy",
+      "capabilities": [
+        "calculate-settlement-range",
+        "analyze-risk-reward",
+        "model-scenarios",
+        "generate-demand-letter"
+      ],
+      "use_cases": [
+        "Calculate fair settlement range",
+        "Analyze litigation risks",
+        "Model settlement scenarios",
+        "Prepare demand letters"
+      ],
+      "output_format": "settlement_analysis.json"
+    },
+
+    "witness-preparator": {
+      "name": "Witness Preparation Agent",
+      "category": "trial",
+      "capabilities": [
+        "prepare-witness",
+        "generate-questions",
+        "anticipate-cross",
+        "coach-testimony"
+      ],
+      "use_cases": [
+        "Prepare witnesses for testimony",
+        "Generate direct examination questions",
+        "Anticipate cross-examination",
+        "Coach effective testimony"
+      ],
+      "output_format": "witness_prep.json"
+    },
+
+    "juror-analyzer": {
+      "name": "Juror Analysis Agent",
+      "category": "trial",
+      "capabilities": [
+        "analyze-voir-dire",
+        "identify-bias",
+        "predict-sympathy",
+        "optimize-jury-selection"
+      ],
+      "use_cases": [
+        "Analyze jury pool",
+        "Identify potential bias",
+        "Predict juror sympathies",
+        "Optimize peremptory challenges"
+      ],
+      "output_format": "juror_analysis.json"
+    },
+
+    "audio-transcriber": {
+      "name": "Audio Transcription Agent",
+      "category": "evidence",
+      "capabilities": [
+        "transcribe-audio",
+        "identify-speakers",
+        "detect-key-phrases",
+        "generate-subtitles"
+      ],
+      "engines": ["whisper", "deepgram", "azure-speech"],
+      "use_cases": [
+        "Transcribe court recordings",
+        "Identify speakers in audio",
+        "Detect key statements",
+        "Generate searchable transcripts"
+      ],
+      "output_format": "transcript.json"
+    }
+  },
+
+  "agent_categories": {
+    "evidence": ["forensic-analyst", "evidence-indexer", "audio-transcriber"],
+    "analysis": ["timeline-reconstruction", "pattern-detector", "sentiment-analyzer"],
+    "quantitative": ["damages-calculator"],
+    "drafting": ["brief-generator"],
+    "research": ["opposition-researcher"],
+    "operations": ["deadline-tracker"],
+    "governance": ["compliance-monitor"],
+    "strategy": ["appeals-strategist", "settlement-analyzer"],
+    "trial": ["witness-preparator", "juror-analyzer"]
+  },
+
+  "orchestration": {
+    "method": "priority-queue",
+    "max_concurrent": 5,
+    "timeout_seconds": 300,
+    "retry_attempts": 3,
+    "fallback_agent": "executive-orchestrator"
+  }
+}

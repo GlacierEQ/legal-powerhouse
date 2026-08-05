@@ -35,6 +35,10 @@ app.use('/api/brain', brainRoutes);
 const contextRoutes = require('./routes/context');
 app.use('/api', contextRoutes);
 
+// Agent routes
+const agentRoutes = require('./routes/agents');
+app.use('/api/agents', agentRoutes);
+
 // ==================== COLOSSUS GATEWAY ROUTES ====================
 
 // System status
