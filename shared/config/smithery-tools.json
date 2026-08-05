@@ -1,0 +1,294 @@
+{
+  "smithery_inventory": {
+    "timestamp": "2026-08-05T19:40:00Z",
+    "total_tools": 200,
+    "servers": {
+      "apex-everything": {
+        "url": "https://mcp.smithery.run/GlacierEQ",
+        "tools": 100,
+        "categories": {
+          "legal": {
+            "count": 4,
+            "tools": [
+              "alexandria-shai-eden-caselaw.search_case_law",
+              "alexandria-shai-eden-caselaw.get_opinion",
+              "alexandria-shai-eden-caselaw.search_dockets",
+              "alexandria-shai-eden-caselaw.insurance_precedent"
+            ]
+          },
+          "legislation": {
+            "count": 14,
+            "tools": [
+              "artificer-lex-oracle.list_blueprints",
+              "artificer-lex-oracle.get_blueprint",
+              "artificer-lex-oracle.get_garnishment_logic",
+              "artificer-lex-oracle.get_travel_logic",
+              "artificer-lex-oracle.get_annual_tax_reconciliation_logic",
+              "artificer-lex-oracle.get_szco_annual_settlement_logic",
+              "artificer-lex-oracle.get_b2b_dph_logic",
+              "artificer-lex-oracle.get_b2b_dppo_logic",
+              "artificer-lex-oracle.get_b2b_odpisy_logic",
+              "artificer-lex-oracle.get_b2b_rz_zp_logic",
+              "artificer-lex-oracle.get_b2b_zrazkova_dan_logic",
+              "artificer-lex-oracle.get_cz_payroll_logic",
+              "artificer-lex-oracle.get_test_cases",
+              "artificer-lex-oracle.get_attribution_mandate"
+            ]
+          },
+          "realestate": {
+            "count": 4,
+            "tools": [
+              "blackboxfoundry-livedatalink.property_lookup",
+              "blackboxfoundry-livedatalink.property_search_owner",
+              "blackboxfoundry-livedatalink.property_search_area",
+              "blackboxfoundry-livedatalink.property_value_history"
+            ]
+          },
+          "transport": {
+            "count": 9,
+            "tools": [
+              "blackboxfoundry-livedatalink.fmcsa_carrier_lookup",
+              "blackboxfoundry-livedatalink.fmcsa_carrier_search",
+              "blackboxfoundry-livedatalink.fmcsa_safety_scores",
+              "blackboxfoundry-livedatalink.fmcsa_carrier_authority",
+              "blackboxfoundry-livedatalink.fmcsa_carrier_compare",
+              "blackboxfoundry-livedatalink.package_track",
+              "blackboxfoundry-livedatalink.vin_decode",
+              "blackboxfoundry-livedatalink.vehicle_recalls",
+              "blackboxfoundry-livedatalink.local_search"
+            ]
+          },
+          "finance": {
+            "count": 15,
+            "tools": [
+              "blackboxfoundry-livedatalink.stock_quote",
+              "blackboxfoundry-livedatalink.stock_quote_batch",
+              "blackboxfoundry-livedatalink.options_chain",
+              "blackboxfoundry-livedatalink.stock_history",
+              "blackboxfoundry-livedatalink.company_info",
+              "blackboxfoundry-livedatalink.stock_compare",
+              "blackboxfoundry-livedatalink.crypto_price",
+              "blackboxfoundry-livedatalink.crypto_compare",
+              "blackboxfoundry-livedatalink.crypto_trending",
+              "blackboxfoundry-livedatalink.crypto_info",
+              "blackboxfoundry-livedatalink.fred_series_info",
+              "blackboxfoundry-livedatalink.fred_observations",
+              "blackboxfoundry-livedatalink.fred_search",
+              "blackboxfoundry-livedatalink.fred_category_series",
+              "blackboxfoundry-livedatalink.fred_quick_indicator"
+            ]
+          },
+          "weather": {
+            "count": 4,
+            "tools": [
+              "blackboxfoundry-livedatalink.weather_current",
+              "blackboxfoundry-livedatalink.weather_forecast",
+              "blackboxfoundry-livedatalink.air_quality",
+              "blackboxfoundry-livedatalink.nws_active_alerts"
+            ]
+          },
+          "sanctions": {
+            "count": 7,
+            "tools": [
+              "blackboxfoundry-livedatalink.sanctions_screen_entity",
+              "blackboxfoundry-livedatalink.sanctions_screen_batch",
+              "blackboxfoundry-livedatalink.sanctions_get_changes",
+              "blackboxfoundry-livedatalink.sanctions_screen_address",
+              "blackboxfoundry-livedatalink.sanctions_get_entity",
+              "blackboxfoundry-livedatalink.sanctions_search_alias",
+              "blackboxfoundry-livedatalink.sanctions_status_summary"
+            ]
+          },
+          "disasters": {
+            "count": 6,
+            "tools": [
+              "blackboxfoundry-livedatalink.disaster_declarations",
+              "blackboxfoundry-livedatalink.nfip_flood_claims",
+              "blackboxfoundry-livedatalink.earthquake_recent",
+              "blackboxfoundry-livedatalink.hurricane_tracker",
+              "blackboxfoundry-livedatalink.disaster_history_summary",
+              "blackboxfoundry-livedatalink.flood_zone_lookup"
+            ]
+          },
+          "court": {
+            "count": 7,
+            "tools": [
+              "blackboxfoundry-livedatalink.court_case_search",
+              "blackboxfoundry-livedatalink.court_docket_lookup",
+              "blackboxfoundry-livedatalink.court_opinion_search",
+              "blackboxfoundry-livedatalink.court_judge_lookup",
+              "blackboxfoundry-livedatalink.court_citation_resolver",
+              "blackboxfoundry-livedatalink.court_oral_argument_search",
+              "blackboxfoundry-livedatalink.court_recent_filings"
+            ]
+          },
+          "cybersecurity": {
+            "count": 7,
+            "tools": [
+              "blackboxfoundry-livedatalink.cve_lookup",
+              "blackboxfoundry-livedatalink.cve_search_by_vendor",
+              "blackboxfoundry-livedatalink.cve_search_by_keyword",
+              "blackboxfoundry-livedatalink.cwe_lookup",
+              "blackboxfoundry-livedatalink.epss_score",
+              "blackboxfoundry-livedatalink.kev_status_check",
+              "blackboxfoundry-livedatalink.cve_recent"
+            ]
+          },
+          "education": {
+            "count": 7,
+            "tools": [
+              "blackboxfoundry-livedatalink.college_search",
+              "blackboxfoundry-livedatalink.college_metrics",
+              "blackboxfoundry-livedatalink.college_demographics",
+              "blackboxfoundry-livedatalink.college_accreditation",
+              "blackboxfoundry-livedatalink.college_compare",
+              "blackboxfoundry-livedatalink.college_outcomes_by_program",
+              "blackboxfoundry-livedatalink.college_trends"
+            ]
+          },
+          "energy": {
+            "count": 7,
+            "tools": [
+              "blackboxfoundry-livedatalink.eia_gasoline_prices",
+              "blackboxfoundry-livedatalink.eia_natural_gas",
+              "blackboxfoundry-livedatalink.eia_electricity_state",
+              "blackboxfoundry-livedatalink.eia_oil_supply",
+              "blackboxfoundry-livedatalink.eia_renewable_generation",
+              "blackboxfoundry-livedatalink.eia_energy_consumption",
+              "blackboxfoundry-livedatalink.eia_series_lookup"
+            ]
+          },
+          "sec": {
+            "count": 3,
+            "tools": [
+              "blackboxfoundry-livedatalink.edgar_company_lookup",
+              "blackboxfoundry-livedatalink.edgar_recent_filings",
+              "blackboxfoundry-livedatalink.edgar_filing_content"
+            ]
+          },
+          "toolbox": {
+            "count": 4,
+            "tools": [
+              "search_toolbox",
+              "execute",
+              "get_toolbox_status",
+              "remove_server"
+            ]
+          }
+        }
+      },
+      "cyber-lazer-mermicorn": {
+        "url": "https://mcp.smithery.ai/cyber-lazer-mermicorn",
+        "tools": 100,
+        "categories": {
+          "browser_automation": {
+            "count": 33,
+            "description": "Full browser control with AI-powered self-healing selectors",
+            "tools": [
+              "cbrowser.navigate", "cbrowser.click", "cbrowser.smart_click",
+              "cbrowser.dismiss_overlay", "cbrowser.fill", "cbrowser.scroll",
+              "cbrowser.screenshot", "cbrowser.extract", "cbrowser.assert",
+              "cbrowser.analyze_page", "cbrowser.generate_tests",
+              "cbrowser.find_element_by_intent", "cbrowser.hover",
+              "cbrowser.type_text", "cbrowser.press_key", "cbrowser.handle_dialog",
+              "cbrowser.upload_file", "cbrowser.drag", "cbrowser.evaluate_script",
+              "cbrowser.get_console_messages", "cbrowser.get_network_requests",
+              "cbrowser.manage_cookies", "cbrowser.manage_storage",
+              "cbrowser.manage_tabs", "cbrowser.reset_browser",
+              "cbrowser.browser_health", "cbrowser.browser_recover", "cbrowser.status"
+            ]
+          },
+          "session_management": {
+            "count": 4,
+            "tools": [
+              "cbrowser.save_session", "cbrowser.load_session",
+              "cbrowser.list_sessions", "cbrowser.delete_session"
+            ]
+          },
+          "visual_testing": {
+            "count": 11,
+            "tools": [
+              "cbrowser.heal_stats", "cbrowser.visual_baseline",
+              "cbrowser.visual_regression", "cbrowser.cross_browser_test",
+              "cbrowser.cross_browser_diff", "cbrowser.responsive_test",
+              "cbrowser.ab_comparison", "cbrowser.transport_map",
+              "cbrowser.list_baselines"
+            ]
+          },
+          "cognitive_analytics": {
+            "count": 22,
+            "tools": [
+              "cbrowser.attention_analysis", "cbrowser.attention_compare",
+              "cbrowser.cognitive_distance", "cbrowser.cognitive_coverage",
+              "cbrowser.cognitive_interpolate", "cbrowser.cognitive_load_estimate",
+              "cbrowser.cognitive_effort", "cbrowser.cognitive_journey_init",
+              "cbrowser.cognitive_journey_update_state", "cbrowser.list_cognitive_personas",
+              "cbrowser.persona_values_list", "cbrowser.persona_lookup",
+              "cbrowser.persona_values_lookup", "cbrowser.list_influence_patterns",
+              "cbrowser.persona_questionnaire_get", "cbrowser.persona_questionnaire_build",
+              "cbrowser.persona_trait_lookup", "cbrowser.persona_category_guidance",
+              "cbrowser.compare_personas", "cbrowser.compare_personas_init",
+              "cbrowser.compare_personas_complete", "cbrowser.visual_cognitive_story"
+            ]
+          },
+          "performance": {
+            "count": 2,
+            "tools": [
+              "cbrowser.perf_baseline", "cbrowser.perf_regression"
+            ]
+          },
+          "ai_readiness": {
+            "count": 8,
+            "tools": [
+              "cbrowser.ai_benchmark", "cbrowser.agent_ready_audit",
+              "cbrowser.competitive_benchmark", "cbrowser.empathy_audit",
+              "cbrowser.webmcp_ready_audit", "cbrowser.site_cognitive_assessment",
+              "cbrowser.llms_txt_generate", "cbrowser.llms_txt_validate"
+            ]
+          },
+          "testing": {
+            "count": 5,
+            "tools": [
+              "cbrowser.nl_test_file", "cbrowser.nl_test_inline",
+              "cbrowser.repair_test", "cbrowser.detect_flaky_tests",
+              "cbrowser.coverage_map"
+            ]
+          },
+          "bug_hunting": {
+            "count": 2,
+            "tools": [
+              "cbrowser.hunt_bugs", "cbrowser.chaos_test"
+            ]
+          },
+          "site_modeling": {
+            "count": 6,
+            "tools": [
+              "cbrowser.page_understand", "cbrowser.site_model_status",
+              "cbrowser.site_model_query", "cbrowser.site_profile_list",
+              "cbrowser.site_profile_delete", "cbrowser.site_profile_status"
+            ]
+          },
+          "screen_capture": {
+            "count": 5,
+            "tools": [
+              "cbrowser.capture_start", "cbrowser.capture_stop",
+              "cbrowser.capture_status", "cbrowser.artifact_fetch",
+              "cbrowser.journey_heatmap_gif"
+            ]
+          },
+          "security": {
+            "count": 1,
+            "tools": ["cbrowser.security_audit"]
+          },
+          "toolbox": {
+            "count": 4,
+            "tools": [
+              "search_toolbox", "execute",
+              "get_toolbox_status", "remove_server"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
