@@ -1,0 +1,22 @@
+{
+  "smithery": {
+    "account": "GlacierEQ",
+    "servers": [
+      {
+        "name": "APEX Everything MCP Server",
+        "url": "https://mcp.smithery.run/GlacierEQ?mode=smart",
+        "key": "f281ba17-4c94-4cb8-abd9-7d5ecda69e57",
+        "status": "active",
+        "tools": 50,
+        "categories": ["memory", "ai/llm", "development", "database", "project-management", "cloud/deploy", "search/research"]
+      },
+      {
+        "name": "cyber-lazer-mermicorn",
+        "url": "https://mcp.smithery.ai/cyber-lazer-mermicorn?mode=smart",
+        "key": "7d303795-76ae-4855-b37c-ef7aea64ffbb",
+        "status": "active"
+      }
+    ],
+    "glama": "https://glama.ai/mcp/servers/GlacierEQ/everything-mcp-server"
+  }
+}
