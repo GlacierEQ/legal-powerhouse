@@ -305,6 +305,43 @@
       text-align: center;
     }
 
+    /* Live Feed Toasts */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 1000;
+    }
+    
+    .toast {
+      background: rgba(10, 16, 28, 0.9);
+      backdrop-filter: blur(12px);
+      border-left: 4px solid var(--accent-blue);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      color: var(--text-main);
+      font-size: 0.85rem;
+      animation: slideIn 0.3s ease-out forwards;
+      max-width: 350px;
+    }
+
+    .toast.error { border-left-color: var(--accent-crimson); }
+    .toast.success { border-left-color: var(--accent-emerald); }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; transform: translateY(-10px); }
+    }
+
     footer {
       text-align: center;
       padding: 2rem;
@@ -381,11 +418,54 @@
     </div>
   </main>
 
+  <div class="toast-container" id="toast-container"></div>
+
   <footer>
     <p>Legal Powerhouse System · <em>Fiat Justitia Ruat Caelum</em> · Apex Omniversal Control</p>
   </footer>
 
   <script>
+    function showToast(message, type='info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `<strong>[SYSTEM EVENT]</strong><br/>${message}`;
+      container.appendChild(toast);
+      
+      setTimeout(() => {
+        toast.style.animation = 'fadeOut 0.3s ease-out forwards';
+        setTimeout(() => toast.remove(), 300);
+      }, 5000);
+    }
+
+    function connectWebSocket() {
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const ws = new WebSocket(`${protocol}//${window.location.host}/ws`);
+      
+      ws.onopen = () => {
+        showToast('Secure Neural Link Established. Agent mesh connected.', 'success');
+        // Request agents list
+        ws.send(JSON.stringify({ type: 'agents' }));
+      };
+      
+      ws.onmessage = (event) => {
+        try {
+          const msg = JSON.parse(event.data);
+          if (msg.type === 'welcome') {
+            showToast(`Connected to ${msg.services.join(', ')}`, 'info');
+          } else if (msg.type === 'agents') {
+            const count = Object.keys(msg.data || {}).length;
+            showToast(`Loaded ${count} active agents into matrix.`, 'info');
+          }
+        } catch (e) {}
+      };
+      
+      ws.onclose = () => {
+        showToast('Connection to Omniversal Nexus lost. Retrying...', 'error');
+        setTimeout(connectWebSocket, 5000);
+      };
+    }
+
     async function loadCaseData() {
       try {
         const res = await fetch('/api/v1/casebuilder?token=omniversal-key');
@@ -442,6 +522,7 @@
     }
 
     loadCaseData();
+    connectWebSocket();
   </script>
 </body>
 </html>
