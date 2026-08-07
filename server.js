@@ -105,18 +105,31 @@ app.get('/api/repositories', (req, res) => {
 // ==================== MONOLITH ROUTES ====================
 
 app.get('/api/monolith/spine', (req, res) => {
-  res.json({
-    case_id: '1FDV-23-0001009',
-    case_name: 'Kekoa Barton - Hawaii Family Court',
-    status: 'active',
-    layers: {
-      legal_data: { repos: 10, status: 'indexed' },
-      context_memory: { repos: 6, status: 'indexed' },
-      work_product: { repos: 6, status: 'indexed' },
-      legal_tech: { repos: 16, status: 'indexed' }
-    },
-    total_repos: 71
-  });
+  try {
+    const estatePath = path.join(__dirname, 'brain', 'monolith_estate.json');
+    if (fs.existsSync(estatePath)) {
+      const estateData = JSON.parse(fs.readFileSync(estatePath, 'utf8'));
+      // Add status and case_name dynamically for UI support
+      estateData.case_name = 'Kekoa Barton - Hawaii Family Court';
+      estateData.status = 'active';
+      return res.json(estateData);
+    }
+    // Fallback if not generated yet
+    res.json({
+      case_id: '1FDV-23-0001009',
+      case_name: 'Kekoa Barton - Hawaii Family Court',
+      status: 'active',
+      layers: {
+        legal_data: { count: 0, nodes: [] },
+        context_memory: { count: 0, nodes: [] },
+        work_product: { count: 0, nodes: [] },
+        legal_tech: { count: 0, nodes: [] }
+      },
+      total_repos: 0
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to read monolith estate: ' + error.message });
+  }
 });
 
 // ==================== EVIDENCE ROUTES ====================

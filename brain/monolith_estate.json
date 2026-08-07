@@ -1,0 +1,285 @@
+{
+  "metadata": {
+    "generated_at": "2026-08-07T20:14:33.676434Z",
+    "total_repositories": 48,
+    "case_id": "1FDV-23-0001009",
+    "authority": "APEX_MONOLITH"
+  },
+  "layers": {
+    "legal_data": {
+      "count": 4,
+      "nodes": [
+        {
+          "name": "CASE_1FDV-23-0001009_FINAL",
+          "absolute_path": "/data/data/com.termux/files/home/CYBERTACK/CASE_1FDV-23-0001009_FINAL",
+          "relative_path": "CYBERTACK/CASE_1FDV-23-0001009_FINAL"
+        },
+        {
+          "name": "CYBERTACK",
+          "absolute_path": "/data/data/com.termux/files/home/CYBERTACK",
+          "relative_path": "CYBERTACK"
+        },
+        {
+          "name": "LEAN_CASE",
+          "absolute_path": "/data/data/com.termux/files/home/CYBERTACK/LEAN_CASE",
+          "relative_path": "CYBERTACK/LEAN_CASE"
+        },
+        {
+          "name": "Pro-Kekoa-Justice",
+          "absolute_path": "/data/data/com.termux/files/home/Pro-Kekoa-Justice",
+          "relative_path": "Pro-Kekoa-Justice"
+        }
+      ]
+    },
+    "legal_tech": {
+      "count": 3,
+      "nodes": [
+        {
+          "name": "the-tower-of-babel",
+          "absolute_path": "/data/data/com.termux/files/home/the-tower-of-babel",
+          "relative_path": "the-tower-of-babel"
+        },
+        {
+          "name": "legal-powerhouse",
+          "absolute_path": "/data/data/com.termux/files/home/legal-powerhouse",
+          "relative_path": "legal-powerhouse"
+        },
+        {
+          "name": "fiat-justitia",
+          "absolute_path": "/data/data/com.termux/files/home/fiat-justitia",
+          "relative_path": "fiat-justitia"
+        }
+      ]
+    },
+    "context_memory": {
+      "count": 4,
+      "nodes": [
+        {
+          "name": "mastermind-tmp",
+          "absolute_path": "/data/data/com.termux/files/home/mastermind-tmp",
+          "relative_path": "mastermind-tmp"
+        },
+        {
+          "name": "chatgpt_infinity",
+          "absolute_path": "/data/data/com.termux/files/home/chatgpt_infinity",
+          "relative_path": "chatgpt_infinity"
+        },
+        {
+          "name": "mastermind",
+          "absolute_path": "/data/data/com.termux/files/home/mastermind",
+          "relative_path": "mastermind"
+        },
+        {
+          "name": "aspen-grove-supabase",
+          "absolute_path": "/data/data/com.termux/files/home/aspen-grove-supabase",
+          "relative_path": "aspen-grove-supabase"
+        }
+      ]
+    },
+    "apex_infrastructure": {
+      "count": 6,
+      "nodes": [
+        {
+          "name": "iceberg-mcp",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/iceberg-mcp",
+          "relative_path": "WORKSPACE/iceberg-mcp"
+        },
+        {
+          "name": "apex-alpha",
+          "absolute_path": "/data/data/com.termux/files/home/apex-alpha",
+          "relative_path": "apex-alpha"
+        },
+        {
+          "name": "apex-omega",
+          "absolute_path": "/data/data/com.termux/files/home/apex-omega",
+          "relative_path": "apex-omega"
+        },
+        {
+          "name": "apex-cli",
+          "absolute_path": "/data/data/com.termux/files/home/apex-cli",
+          "relative_path": "apex-cli"
+        },
+        {
+          "name": "apex-workers-runtime",
+          "absolute_path": "/data/data/com.termux/files/home/apex-workers-runtime",
+          "relative_path": "apex-workers-runtime"
+        },
+        {
+          "name": "apex-cli",
+          "absolute_path": "/data/data/com.termux/files/home/.apex_automation/apex-cli",
+          "relative_path": ".apex_automation/apex-cli"
+        }
+      ]
+    },
+    "ai_automation": {
+      "count": 8,
+      "nodes": [
+        {
+          "name": "grokadile",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/grokadile",
+          "relative_path": "WORKSPACE/grokadile"
+        },
+        {
+          "name": "grok-hyper-mesh",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/grok-hyper-mesh",
+          "relative_path": "WORKSPACE/grok-hyper-mesh"
+        },
+        {
+          "name": "deepmind-alpha-jax-engine",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/deepmind-alpha-jax-engine",
+          "relative_path": "WORKSPACE/deepmind-alpha-jax-engine"
+        },
+        {
+          "name": "anthropic-claude-constitutional-rag",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/anthropic-claude-constitutional-rag",
+          "relative_path": "WORKSPACE/anthropic-claude-constitutional-rag"
+        },
+        {
+          "name": "openai-o1-reasoning-tree",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/openai-o1-reasoning-tree",
+          "relative_path": "WORKSPACE/openai-o1-reasoning-tree"
+        },
+        {
+          "name": "kimi-infinite-context-reasoning",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/kimi-infinite-context-reasoning",
+          "relative_path": "WORKSPACE/kimi-infinite-context-reasoning"
+        },
+        {
+          "name": "ai-auto-driller-unified",
+          "absolute_path": "/data/data/com.termux/files/home/ai-auto-driller-unified",
+          "relative_path": "ai-auto-driller-unified"
+        },
+        {
+          "name": "ai-auto-driller-pro-max",
+          "absolute_path": "/data/data/com.termux/files/home/ai-auto-driller-pro-max",
+          "relative_path": "ai-auto-driller-pro-max"
+        }
+      ]
+    },
+    "active_workspaces": {
+      "count": 16,
+      "nodes": [
+        {
+          "name": "ART",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/ART",
+          "relative_path": "WORKSPACE/ART"
+        },
+        {
+          "name": "antigravity-sdk-python",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/antigravity-sdk-python",
+          "relative_path": "WORKSPACE/antigravity-sdk-python"
+        },
+        {
+          "name": "public-actions-runner-host",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/public-actions-runner-host",
+          "relative_path": "WORKSPACE/public-actions-runner-host"
+        },
+        {
+          "name": "pro-code",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/pro-code",
+          "relative_path": "WORKSPACE/pro-code"
+        },
+        {
+          "name": "MiMo-Config",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/MiMo-Config",
+          "relative_path": "WORKSPACE/MiMo-Config"
+        },
+        {
+          "name": "job-application",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/job-application",
+          "relative_path": "WORKSPACE/job-application"
+        },
+        {
+          "name": "company-enhancements",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/company-enhancements",
+          "relative_path": "WORKSPACE/company-enhancements"
+        },
+        {
+          "name": "nexus-api",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/nexus-api",
+          "relative_path": "WORKSPACE/nexus-api"
+        },
+        {
+          "name": "nvidia-blackwell-flash-kernel",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/nvidia-blackwell-flash-kernel",
+          "relative_path": "WORKSPACE/nvidia-blackwell-flash-kernel"
+        },
+        {
+          "name": "spacex-starship-realtime-gnc",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/spacex-starship-realtime-gnc",
+          "relative_path": "WORKSPACE/spacex-starship-realtime-gnc"
+        },
+        {
+          "name": "tasklet-autonomous-orchestrator",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/tasklet-autonomous-orchestrator",
+          "relative_path": "WORKSPACE/tasklet-autonomous-orchestrator"
+        },
+        {
+          "name": "residual-lattice-quantization",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/residual-lattice-quantization",
+          "relative_path": "WORKSPACE/residual-lattice-quantization"
+        },
+        {
+          "name": "sovereign-frontier-repo-template",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/sovereign-frontier-repo-template",
+          "relative_path": "WORKSPACE/sovereign-frontier-repo-template"
+        },
+        {
+          "name": "GlacierEQ-template",
+          "absolute_path": "/data/data/com.termux/files/home/WORKSPACE/GlacierEQ-template",
+          "relative_path": "WORKSPACE/GlacierEQ-template"
+        },
+        {
+          "name": ".mimocode",
+          "absolute_path": "/data/data/com.termux/files/home/MiMo_Code_Isolated_Workspace/.mimocode",
+          "relative_path": "MiMo_Code_Isolated_Workspace/.mimocode"
+        },
+        {
+          "name": "MiMo-Config",
+          "absolute_path": "/data/data/com.termux/files/home/MiMo_Code_Isolated_Workspace/MiMo-Config",
+          "relative_path": "MiMo_Code_Isolated_Workspace/MiMo-Config"
+        }
+      ]
+    },
+    "ancillary_systems": {
+      "count": 7,
+      "nodes": [
+        {
+          "name": ".nvm",
+          "absolute_path": "/data/data/com.termux/files/home/.nvm",
+          "relative_path": ".nvm"
+        },
+        {
+          "name": ".asdf",
+          "absolute_path": "/data/data/com.termux/files/home/.asdf",
+          "relative_path": ".asdf"
+        },
+        {
+          "name": "computer-user",
+          "absolute_path": "/data/data/com.termux/files/home/PROJECTS/computer-user",
+          "relative_path": "PROJECTS/computer-user"
+        },
+        {
+          "name": "home",
+          "absolute_path": "/data/data/com.termux/files/home",
+          "relative_path": "."
+        },
+        {
+          "name": "job-app",
+          "absolute_path": "/data/data/com.termux/files/home/.apex_automation/job-app",
+          "relative_path": ".apex_automation/job-app"
+        },
+        {
+          "name": "memory-bridge",
+          "absolute_path": "/data/data/com.termux/files/home/.apex_automation/memory-bridge",
+          "relative_path": ".apex_automation/memory-bridge"
+        },
+        {
+          "name": "nix-environments",
+          "absolute_path": "/data/data/com.termux/files/home/nix-environments",
+          "relative_path": "nix-environments"
+        }
+      ]
+    }
+  }
+}
