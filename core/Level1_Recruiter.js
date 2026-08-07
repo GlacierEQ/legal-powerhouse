@@ -1,7 +1,23 @@
+const fs = require('fs');
+const path = require('path');
+
 class Recruiter {
   constructor(agentRegistry) {
     this.agents = agentRegistry.agents || {};
     this.pistons = agentRegistry.pistons || {};
+    this.monolith = this.loadMonolith();
+  }
+
+  loadMonolith() {
+    try {
+      const estatePath = path.join(__dirname, '..', 'brain', 'monolith_estate.json');
+      if (fs.existsSync(estatePath)) {
+        return JSON.parse(fs.readFileSync(estatePath, 'utf8'));
+      }
+    } catch (e) {
+      console.error("[RECRUITER] Failed to load Monolith:", e.message);
+    }
+    return null;
   }
 
   /**
@@ -33,11 +49,28 @@ class Recruiter {
     // Ensure at least stealth-justice is active
     if (squad.pistons.length === 0) squad.pistons.push('stealth-justice');
 
+    // Mesh the links: Attach relevant repositories from the Monolith
+    const meshedLinks = [];
+    if (this.monolith && this.monolith.layers) {
+      if (text.includes('rico') || squad.pistons.includes('stealth-evidence')) {
+        meshedLinks.push(...(this.monolith.layers.legal_data?.nodes.slice(0, 3) || []));
+      }
+      if (squad.pistons.includes('stealth-precedent')) {
+        meshedLinks.push(...(this.monolith.layers.legal_tech?.nodes.slice(0, 2) || []));
+      }
+      // Always attach core colossus nodes to the commander
+      meshedLinks.push(...(this.monolith.layers.colossus_core_nodes?.nodes.slice(0, 2) || []));
+    }
+
+    // Deduplicate meshed links by URL
+    const uniqueLinks = Array.from(new Map(meshedLinks.map(repo => [repo.url, repo])).values());
+
     return {
       objective,
       squad,
+      meshed_links: uniqueLinks.map(r => ({ name: r.name, url: r.url })),
       recruitment_timestamp: new Date().toISOString(),
-      status: 'SQUAD_ASSEMBLED'
+      status: 'SQUAD_ASSEMBLED_AND_MESHED'
     };
   }
 }
