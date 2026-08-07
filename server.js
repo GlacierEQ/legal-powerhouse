@@ -129,21 +129,61 @@ app.get('/api/evidence', (req, res) => {
   });
 });
 
-// ==================== TIMELINE ROUTES ====================
+// ==================== MASTER CASEBUILDER & ACTORS ROUTES ====================
 
-app.get('/api/timeline', (req, res) => {
+const fs = require('fs');
+
+function getCasebuilderData() {
+  const casebuilderPath = path.join(__dirname, 'brain', 'CASE_1FDV-23-0001009_COMPLETE_CASEBUILDER.json');
+  if (fs.existsSync(casebuilderPath)) {
+    try {
+      return JSON.parse(fs.readFileSync(casebuilderPath, 'utf8'));
+    } catch (e) {
+      console.error('Error reading casebuilder JSON:', e);
+    }
+  }
+  return null;
+}
+
+app.get('/api/v1/casebuilder', (req, res) => {
+  const data = getCasebuilderData();
+  if (data) return res.json(data);
+  res.status(404).json({ error: 'Casebuilder data not found' });
+});
+
+app.get('/api/v1/actors', (req, res) => {
+  const data = getCasebuilderData();
+  if (data && data.actor_matrix) {
+    return res.json({ case_id: data.case_id, total: data.total_actors, actors: data.actor_matrix });
+  }
+  res.status(404).json({ error: 'Actor matrix not found' });
+});
+
+app.get('/api/v1/timeline', (req, res) => {
+  const data = getCasebuilderData();
+  if (data && data.master_timeline) {
+    return res.json({ case_id: data.case_id, total: data.total_timeline_events, timeline: data.master_timeline });
+  }
   res.json({
     case_id: '1FDV-23-0001009',
     key_dates: [
-      { date: '2023-05-15', event: 'TRO 515 issued (87-second decree)' },
-      { date: '2023-05-15', event: 'CSEA hearing (13-hour notice)' },
+      { date: '2023-05-31', event: 'Original Ex Parte TRO Issued' },
+      { date: '2023-06-30', event: 'Original TRO Lapsed by Operation of Law' },
       { date: '2024-10-03', event: 'HPD Report WEBU350142 (3 versions)' },
-      { date: '2024-10-03', event: 'JEFS fraud confirmed' },
-      { date: '2025-01-15', event: 'Federal complaint filed' },
-      { date: '2025-02-01', event: 'RICO allegations added' }
+      { date: '2024-10-07', event: 'CSEA 13-Hour Notice Mailed (9:57 PM)' },
+      { date: '2024-10-08', event: '$3,500/Month Support Order Issued' },
+      { date: '2026-08-07', event: 'Federal RICO Complaint Certified' }
     ],
     status: 'active_litigation'
   });
+});
+
+app.get('/api/v1/violations', (req, res) => {
+  const data = getCasebuilderData();
+  if (data && data.violations_matrix) {
+    return res.json({ case_id: data.case_id, total: data.total_statutory_violations, violations: data.violations_matrix });
+  }
+  res.status(404).json({ error: 'Violations matrix not found' });
 });
 
 // ==================== WEBSOCKET ====================

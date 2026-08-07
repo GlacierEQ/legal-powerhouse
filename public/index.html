@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal Powerhouse — Case 1FDV-23-0001009 Control Surface</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #090d16;
+      --card-bg: rgba(18, 26, 44, 0.75);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --accent-gold: #fbbf24;
+      --accent-blue: #38bdf8;
+      --accent-crimson: #f43f5e;
+      --accent-emerald: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.12) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(251, 191, 36, 0.08) 0px, transparent 50%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    header {
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 1.25rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-blue));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #000;
+      box-shadow: 0 4px 20px rgba(251, 191, 36, 0.3);
+    }
+
+    .brand-text h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-text p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-emerald);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-emerald);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-emerald);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .metric-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .metric-title {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .metric-value {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .metric-sub {
+      font-size: 0.8rem;
+      color: var(--accent-gold);
+      margin-top: 0.25rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .content-section {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-title i {
+      color: var(--accent-gold);
+    }
+
+    .search-input {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 0.6rem 1rem;
+      color: var(--text-main);
+      font-family: inherit;
+      width: 280px;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-blue);
+    }
+
+    .actor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .actor-card {
+      background: rgba(10, 16, 28, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      transition: all 0.2s ease;
+    }
+
+    .actor-card:hover {
+      border-color: var(--accent-blue);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .actor-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+
+    .actor-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text-main);
+    }
+
+    .actor-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-blue);
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+    }
+
+    .actor-role {
+      font-size: 0.85rem;
+      color: var(--accent-gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .actor-predicate {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .flip-pill {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      background: rgba(244, 63, 94, 0.15);
+      color: var(--accent-crimson);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+    }
+
+    .timeline-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 140px 1fr 120px;
+      gap: 1.5rem;
+      background: rgba(10, 16, 28, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      align-items: center;
+    }
+
+    .timeline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: var(--accent-gold);
+      font-size: 0.9rem;
+    }
+
+    .timeline-event {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .timeline-exhibit {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--accent-gold);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--card-border);
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="brand-logo">⚖️</div>
+      <div class="brand-text">
+        <h1>Legal Powerhouse</h1>
+        <p>CASE 1FDV-23-0001009 · APEX DOUBLE HELIX SYSTEM</p>
+      </div>
+    </div>
+    <div class="status-badge">
+      <div class="status-dot"></div>
+      System Active · Court Ready
+    </div>
+  </header>
+
+  <main>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-title">Certified Exhibits</div>
+        <div class="metric-value" id="val-exhibits">63</div>
+        <div class="metric-sub">100% Daubert Compliant</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-title">Defendants & Actors</div>
+        <div class="metric-value" id="val-actors">23</div>
+        <div class="metric-sub">RICO Enterprise Mapped</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-title">Filing Readiness</div>
+        <div class="metric-value">100%</div>
+        <div class="metric-sub">FRCP Rules 11/26/37 Certified</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-title">Flip Probability (Teresa)</div>
+        <div class="metric-value">90%+</div>
+        <div class="metric-sub">Cascade Primary Target</div>
+      </div>
+    </div>
+
+    <!-- 23-Actor Defendant Grid -->
+    <div class="content-section">
+      <div class="section-header">
+        <div class="section-title">
+          <i>👥</i> 23-Actor Defendant & Co-Conspirator Matrix
+        </div>
+        <input type="text" class="search-input" id="actor-search" placeholder="Search actors or roles...">
+      </div>
+      <div class="actor-grid" id="actor-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Master Timeline -->
+    <div class="content-section">
+      <div class="section-header">
+        <div class="section-title">
+          <i>📅</i> Master Chronological Timeline
+        </div>
+      </div>
+      <div class="timeline-list" id="timeline-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Legal Powerhouse System · <em>Fiat Justitia Ruat Caelum</em> · Apex Omniversal Control</p>
+  </footer>
+
+  <script>
+    async function loadCaseData() {
+      try {
+        const res = await fetch('/api/v1/casebuilder');
+        const data = await res.json();
+
+        // Render Actors
+        const actorContainer = document.getElementById('actor-container');
+        const searchInput = document.getElementById('actor-search');
+        
+        function renderActors(filterText = '') {
+          actorContainer.innerHTML = '';
+          const actors = data.actor_matrix || [];
+          const filtered = actors.filter(a => 
+            a.name.toLowerCase().includes(filterText.toLowerCase()) ||
+            a.role.toLowerCase().includes(filterText.toLowerCase()) ||
+            a.category.toLowerCase().includes(filterText.toLowerCase())
+          );
+
+          filtered.forEach(actor => {
+            const card = document.createElement('div');
+            card.className = 'actor-card';
+            card.innerHTML = `
+              <div class="actor-header">
+                <div class="actor-name">${actor.name}</div>
+                <div class="actor-id">${actor.actor_id}</div>
+              </div>
+              <div class="actor-role">${actor.role} (${actor.category})</div>
+              <div class="actor-predicate"><strong>Predicates:</strong> ${actor.predicate_acts.join(', ')}</div>
+              <div class="flip-pill">Flip Probability: ${actor.flip_probability}</div>
+            `;
+            actorContainer.appendChild(card);
+          });
+        }
+
+        renderActors();
+        searchInput.addEventListener('input', (e) => renderActors(e.target.value));
+
+        // Render Timeline
+        const timelineContainer = document.getElementById('timeline-container');
+        (data.master_timeline || []).forEach(item => {
+          const row = document.createElement('div');
+          row.className = 'timeline-item';
+          row.innerHTML = `
+            <div class="timeline-date">${item.date}</div>
+            <div class="timeline-event">${item.event} — <span style="color: #94a3b8; font-weight:400;">${item.legal_impact}</span></div>
+            <div class="timeline-exhibit">${item.exhibit}</div>
+          `;
+          timelineContainer.appendChild(row);
+        });
+
+      } catch (err) {
+        console.error('Failed to load casebuilder data:', err);
+      }
+    }
+
+    loadCaseData();
+  </script>
+</body>
+</html>
