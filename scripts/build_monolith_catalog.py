@@ -23,18 +23,46 @@ def fetch_github_repos():
 def classify_repo(repo_name):
     repo_name_lower = repo_name.lower()
     
-    if any(k in repo_name_lower for k in ['case', 'cybertack', '1fdv', 'justice', 'dockets', 'evidence', 'cataclysm']):
+    # 1. CORE APEX INFRASTRUCTURE (The Nervous System)
+    if any(k in repo_name_lower for k in ['apex', 'mcp', 'agent', 'comet', 'omni', 'runner', 'host']):
+        return "apex_infrastructure"
+        
+    # 2. COLOSSUS & MASTER NODES (The Core Servers/Gateways)
+    elif any(k in repo_name_lower for k in ['colossus', 'monolith', 'nexus', 'akos', 'echo', 'megamind', 'server', 'gateway']):
+        return "colossus_core_nodes"
+        
+    # 3. PRO CODE & HEAVY EXECUTION (The Engine Room)
+    elif any(k in repo_name_lower for k in ['pro-code', 'pro_code', 'make-it-heavy', 'mimo', 'affine']):
+        return "pro_code_execution"
+
+    # 4. LEGAL DATA (Raw Case Evidence & Indexes)
+    elif any(k in repo_name_lower for k in ['case', 'cybertack', '1fdv', 'justice', 'dockets', 'evidence', 'cataclysm', 'book-of-breach']):
         return "legal_data"
-    elif any(k in repo_name_lower for k in ['legal', 'fiat', 'tower', 'powerhouse', 'fileboss', 'fortress']):
+        
+    # 5. LEGAL TECH (The Engineering Floors)
+    elif any(k in repo_name_lower for k in ['legal', 'fiat', 'tower', 'powerhouse', 'fileboss', 'fortress', 'brief', 'motion']):
         return "legal_tech"
+        
+    # 6. CONTEXT MEMORY (Persistence & Supermemory)
     elif any(k in repo_name_lower for k in ['aspen', 'aeon', 'brain', 'supermemory', 'mem0', 'mastermind', 'chatgpt']):
         return "context_memory"
-    elif any(k in repo_name_lower for k in ['apex', 'mcp', 'agent', 'comet', 'omni']):
-        return "apex_infrastructure"
-    elif any(k in repo_name_lower for k in ['ai', 'grok', 'deepmind', 'claude', 'openai', 'kimi', 'model']):
+
+    # 7. AI & AUTONOMY (Models & Frameworks)
+    elif any(k in repo_name_lower for k in ['ai', 'grok', 'deepmind', 'claude', 'openai', 'kimi', 'model', 'autonomy', 'spacex']):
         return "ai_automation"
+        
+    # 8. CAREER & OPERATIONS (Personal Ops)
+    elif any(k in repo_name_lower for k in ['job', 'resume', 'application', 'career']):
+        return "career_operations"
+        
+    # 9. DATA & STORAGE TOOLS
+    elif any(k in repo_name_lower for k in ['pdf', 'doc', 'storage', 'data', 'cloud']):
+        return "data_and_storage"
+
+    # 10. ACTIVE WORKSPACES
     elif "workspace" in repo_name_lower:
         return "active_workspaces"
+        
     else:
         return "ancillary_systems"
 
@@ -45,11 +73,15 @@ def build_monolith():
         return
 
     catalog = {
+        "apex_infrastructure": [],
+        "colossus_core_nodes": [],
+        "pro_code_execution": [],
         "legal_data": [],
         "legal_tech": [],
         "context_memory": [],
-        "apex_infrastructure": [],
         "ai_automation": [],
+        "career_operations": [],
+        "data_and_storage": [],
         "active_workspaces": [],
         "ancillary_systems": []
     }
