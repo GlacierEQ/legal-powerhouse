@@ -145,6 +145,16 @@ function getCasebuilderData() {
   return null;
 }
 
+const v1Auth = (req, res, next) => {
+  const token = req.headers['x-api-key'] || req.query.token;
+  if (!token || token !== process.env.LEGAL_POWERHOUSE_API_KEY) {
+    return res.status(401).json({ error: 'Unauthorized: Access Denied to Omniversal Apex API' });
+  }
+  next();
+};
+
+app.use('/api/v1', v1Auth);
+
 app.get('/api/v1/casebuilder', (req, res) => {
   const data = getCasebuilderData();
   if (data) return res.json(data);

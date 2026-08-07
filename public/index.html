@@ -388,7 +388,7 @@
   <script>
     async function loadCaseData() {
       try {
-        const res = await fetch('/api/v1/casebuilder');
+        const res = await fetch('/api/v1/casebuilder?token=omniversal-key');
         const data = await res.json();
 
         // Render Actors
