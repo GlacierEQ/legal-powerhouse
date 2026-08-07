@@ -1,11 +1,10 @@
 /**
- * LEGAL POWERHOUSE - Unified Entry Point
- * 
- * Combines:
- * - Colossus Gateway (Keymaster + Gatekeeper)
- * - Fiat Justitia (Legal document engineering)
- * - Tower of Babel (Technology floors)
- * - Monolith (Library mapping)
+ * Legal Powerhouse — governed legal-engineering surface.
+ *
+ * Runtime rule: this service may expose architecture and checked-in registries,
+ * but it must not manufacture or hard-code live legal facts. Case posture,
+ * filings, evidence counts, deadlines, and readiness require a verified source
+ * projection before they may be returned as current truth.
  */
 
 const express = require('express');
@@ -14,213 +13,131 @@ const { WebSocketServer } = require('ws');
 const http = require('http');
 const path = require('path');
 
-// Load environment variables (no hardcoded secrets)
-// Use .env.local or system environment variables
 require('dotenv').config({ path: '.env.local' });
 
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocketServer({ server, path: '/ws' });
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Brain routes
 const brainRoutes = require('./routes/brain');
-app.use('/api/brain', brainRoutes);
-
-// Context compression routes
 const contextRoutes = require('./routes/context');
-app.use('/api', contextRoutes);
-
-// Agent routes
 const agentRoutes = require('./routes/agents');
+const agents = require('./shared/config/agents.json');
+const documents = require('./shared/config/documents.json');
+
+app.use('/api/brain', brainRoutes);
+app.use('/api', contextRoutes);
 app.use('/api/agents', agentRoutes);
 
-// ==================== COLOSSUS GATEWAY ROUTES ====================
+const truthBoundary = {
+  status: 'source_required',
+  verified: false,
+  message:
+    'Live legal posture is not embedded in this public runtime. Read from the governed case/evidence projection before asserting current facts.',
+  canonical_sources: [
+    'GlacierEQ/SUPERLUMINAL_CASE_MATRIX',
+    'GlacierEQ/CASE-1FDV-23-0001009',
+    'APEX Legal War Room / verified docket and evidence databases'
+  ]
+};
 
-// System status
-app.get('/api/status', (req, res) => {
+app.get('/api/status', (_req, res) => {
   res.json({
     name: 'Legal Powerhouse',
     version: '1.0.0',
-    tagline: 'The relentless pursuit of truth',
-    case: '1FDV-23-0001009',
+    role: 'legal-engineering orchestration surface',
+    runtime: 'active',
+    legal_truth: truthBoundary,
     components: {
-      colossus: { status: 'active', description: 'Keymaster + Gatekeeper' },
-      fiat_justitia: { status: 'active', description: 'Legal document engineering' },
-      tower_of_babel: { status: 'active', description: 'Technology floors' },
-      monolith: { status: 'active', description: 'Library mapping' },
-      casebrain: { status: 'active', description: 'Unified memory system' }
+      monolith: { status: 'mapped', description: 'Library mapping and ecosystem navigation' },
+      casebrain: { status: 'external_authority', description: 'Evidence-first legal truth layer' },
+      document_engineering: { status: 'registry_available', description: 'Templates and controlled drafting capabilities' }
     },
-    uptime: process.uptime(),
+    uptime_seconds: process.uptime(),
     timestamp: new Date().toISOString()
   });
 });
 
-// ==================== KEYMASTER ROUTES ====================
-
-const agents = require('./shared/config/agents.json');
-const documents = require('./shared/config/documents.json');
-
-app.get('/api/agents', (req, res) => {
-  res.json(agents);
-});
+app.get('/api/agents', (_req, res) => res.json(agents));
 
 app.get('/api/agents/:tier', (req, res) => {
   const tier = req.params.tier;
-  const filtered = Object.values(agents.agents).filter(a => a.tier === tier);
-  res.json({ agents: filtered, tier, count: filtered.length });
+  const values = agents.agents ? Object.values(agents.agents) : [];
+  res.json({ agents: values.filter((agent) => agent.tier === tier), tier });
 });
 
-app.get('/api/pistons', (req, res) => {
-  res.json(agents.pistons);
-});
-
-// ==================== FIAT JUSTITIA ROUTES ====================
-
-app.get('/api/documents', (req, res) => {
-  res.json(documents);
-});
+app.get('/api/pistons', (_req, res) => res.json(agents.pistons || []));
+app.get('/api/documents', (_req, res) => res.json(documents));
 
 app.get('/api/documents/:category', (req, res) => {
-  const category = req.params.category;
-  const docs = documents.categories[category];
-  if (!docs) return res.status(404).json({ error: 'Category not found' });
-  res.json({ category, ...docs });
+  const category = documents.categories && documents.categories[req.params.category];
+  if (!category) return res.status(404).json({ error: 'Category not found' });
+  return res.json({ ...category, category: req.params.category });
 });
 
-app.get('/api/repositories', (req, res) => {
-  res.json(documents.repositories);
+app.get('/api/repositories', (_req, res) => {
+  res.json(documents.repositories || []);
 });
 
-// ==================== MONOLITH ROUTES ====================
-
-app.get('/api/monolith/spine', (req, res) => {
+app.get('/api/monolith/spine', (_req, res) => {
   res.json({
-    case_id: '1FDV-23-0001009',
-    case_name: 'Kekoa Barton - Hawaii Family Court',
-    status: 'active',
-    layers: {
-      legal_data: { repos: 10, status: 'indexed' },
-      context_memory: { repos: 6, status: 'indexed' },
-      work_product: { repos: 6, status: 'indexed' },
-      legal_tech: { repos: 16, status: 'indexed' }
-    },
-    total_repos: 71
+    status: 'mapped',
+    authority: 'GlacierEQ/monolith',
+    legal_counterpart: 'GlacierEQ/legal-powerhouse',
+    legal_truth_authority: 'GlacierEQ/SUPERLUMINAL_CASE_MATRIX',
+    note: 'Repository counts and case posture must be loaded from current canonical projections.'
   });
 });
 
-// ==================== EVIDENCE ROUTES ====================
-
-app.get('/api/evidence', (req, res) => {
-  res.json({
-    case_id: '1FDV-23-0001009',
-    evidence_types: [
-      { type: 'documentary', count: 27, status: 'ready' },
-      { type: 'audio', count: 4, status: 'pending_transcription' },
-      { type: 'digital', count: 12, status: 'authenticated' },
-      { type: 'expert', count: 3, status: 'retained' }
-    ],
-    total_exhibits: 46,
-    filing_readiness: '87%'
+app.get('/api/evidence', (_req, res) => {
+  res.status(503).json({
+    error: 'verified_projection_required',
+    ...truthBoundary
   });
 });
 
-// ==================== TIMELINE ROUTES ====================
-
-app.get('/api/timeline', (req, res) => {
-  res.json({
-    case_id: '1FDV-23-0001009',
-    key_dates: [
-      { date: '2023-05-15', event: 'TRO 515 issued (87-second decree)' },
-      { date: '2023-05-15', event: 'CSEA hearing (13-hour notice)' },
-      { date: '2024-10-03', event: 'HPD Report WEBU350142 (3 versions)' },
-      { date: '2024-10-03', event: 'JEFS fraud confirmed' },
-      { date: '2025-01-15', event: 'Federal complaint filed' },
-      { date: '2025-02-01', event: 'RICO allegations added' }
-    ],
-    status: 'active_litigation'
+app.get('/api/timeline', (_req, res) => {
+  res.status(503).json({
+    error: 'verified_projection_required',
+    ...truthBoundary
   });
 });
-
-// ==================== WEBSOCKET ====================
 
 wss.on('connection', (ws) => {
-  console.log('Client connected to Legal Powerhouse');
-  
   ws.send(JSON.stringify({
     type: 'welcome',
-    message: 'Connected to Legal Powerhouse',
-    tagline: 'The relentless pursuit of truth',
-    services: ['colossus', 'fiat-justitia', 'tower-of-babel', 'monolith']
+    service: 'Legal Powerhouse',
+    legal_truth: truthBoundary
   }));
 
   ws.on('message', (data) => {
     try {
-      const msg = JSON.parse(data);
-      
-      switch (msg.type) {
-        case 'status':
-          ws.send(JSON.stringify({
-            type: 'status',
-            data: {
-              case: '1FDV-23-0001009',
-              status: 'active',
-              readiness: '87%'
-            }
-          }));
-          break;
-        case 'agents':
-          ws.send(JSON.stringify({
-            type: 'agents',
-            data: agents.agents
-          }));
-          break;
-        case 'documents':
-          ws.send(JSON.stringify({
-            type: 'documents',
-            data: documents.categories
-          }));
-          break;
+      const message = JSON.parse(data);
+      if (message.type === 'agents') {
+        ws.send(JSON.stringify({ type: 'agents', data: agents.agents || {} }));
+        return;
       }
-    } catch (e) {
-      ws.send(JSON.stringify({ type: 'error', message: e.message }));
+      if (message.type === 'documents') {
+        ws.send(JSON.stringify({ type: 'documents', data: documents.categories || {} }));
+        return;
+      }
+      ws.send(JSON.stringify({
+        type: 'status',
+        data: { runtime: 'active', legal_truth: truthBoundary }
+      }));
+    } catch (_error) {
+      ws.send(JSON.stringify({ type: 'error', message: 'invalid_request' }));
     }
   });
-
-  ws.on('close', () => {
-    console.log('Client disconnected');
-  });
 });
 
-// ==================== START ====================
-
-const PORT = process.env.PORT || 3000;
-
+const PORT = Number(process.env.PORT || 3000);
 server.listen(PORT, () => {
-  console.log(`
-╔══════════════════════════════════════════════════════════╗
-║           LEGAL POWERHOUSE v1.0.0                        ║
-║           "The relentless pursuit of truth"              ║
-║                                                          ║
-║  Case: 1FDV-23-0001009                                   ║
-║  Matter: Kekoa Barton - Hawaii Family Court              ║
-║                                                          ║
-║  Components:                                             ║
-║    • Colossus Gateway (Keymaster + Gatekeeper)           ║
-║    • Fiat Justitia (Legal document engineering)          ║
-║    • Tower of Babel (Technology floors)                  ║
-║    • Monolith (Library mapping)                          ║
-║                                                          ║
-║  HTTP:  http://localhost:${PORT}                           ║
-║  WS:    ws://localhost:${PORT}/ws                          ║
-║                                                          ║
-║  Fiat justitia ruat caelum.                              ║
-╚══════════════════════════════════════════════════════════╝
-  `);
+  console.log(`Legal Powerhouse listening on http://localhost:${PORT}`);
 });
 
-module.exports = { app, server };
+module.exports = { app, server, truthBoundary };

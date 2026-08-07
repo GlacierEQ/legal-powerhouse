@@ -1,9 +1,25 @@
 {
   "title": "Legal Powerhouse Document Registry",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "case_id": "1FDV-23-0001009",
   "case_name": "Kekoa Barton - Hawaii Family Court",
-  
+  "registry_status": "PARTIAL_STATIC_PROJECTION",
+  "registry_authority": {
+    "estate_map": "GlacierEQ/monolith",
+    "canonical_legal_domain": "domains/legal_case.md",
+    "live_reconciliation": "GlacierEQ/monolith#37",
+    "evidence_truth": "GlacierEQ/SUPERLUMINAL_CASE_MATRIX",
+    "controlling_records": "owning case and evidence repositories",
+    "rule": "This file is a bounded operator projection. It must not be treated as an exhaustive legal-estate inventory or proof that a listed repository is operational, current, safe for filing use, or production-ready."
+  },
+  "known_coverage": {
+    "monolith_main_legal_domain_count": 72,
+    "monolith_open_reconciliation_count": 18,
+    "local_named_repository_count": 38,
+    "fully_reconciled": false,
+    "freshness_receipt_present": false,
+    "automatic_projection_enabled": false
+  },
   "categories": {
     "motions": {
       "count": 5,
@@ -45,7 +61,6 @@
       ]
     }
   },
-  
   "repositories": {
     "legal-data": [
       "DOCKETS",
@@ -94,7 +109,6 @@
       "fileboss-whisperx-processor"
     ]
   },
-  
   "proof_classes": [
     "draft",
     "researched",
