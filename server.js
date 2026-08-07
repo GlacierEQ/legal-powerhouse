@@ -76,7 +76,7 @@ app.get('/api/documents', (_req, res) => res.json(documents));
 app.get('/api/documents/:category', (req, res) => {
   const category = documents.categories && documents.categories[req.params.category];
   if (!category) return res.status(404).json({ error: 'Category not found' });
-  return res.json({ category: req.params.category, ...category });
+  return res.json({ ...category, category: req.params.category });
 });
 
 app.get('/api/repositories', (_req, res) => {
@@ -129,8 +129,8 @@ wss.on('connection', (ws) => {
         type: 'status',
         data: { runtime: 'active', legal_truth: truthBoundary }
       }));
-    } catch (error) {
-      ws.send(JSON.stringify({ type: 'error', message: error.message }));
+    } catch (_error) {
+      ws.send(JSON.stringify({ type: 'error', message: 'invalid_request' }));
     }
   });
 });
