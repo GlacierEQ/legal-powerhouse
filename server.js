@@ -22,6 +22,12 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocketServer({ server, path: '/ws' });
 
+// 4-Level Methodology
+const Recruiter = require('./core/Level1_Recruiter');
+const MasterOfTrade = require('./core/Level2_MasterOfTrade');
+const Machine = require('./core/Level3_Machine');
+const Mesh = require('./core/Level4_Mesh');
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -159,6 +165,49 @@ app.get('/api/v1/casebuilder', (req, res) => {
   const data = getCasebuilderData();
   if (data) return res.json(data);
   res.status(404).json({ error: 'Casebuilder data not found' });
+});
+
+app.post('/api/v1/omni-execute', async (req, res) => {
+  try {
+    const { objective, data, proof_class } = req.body;
+    if (!objective || !data || !proof_class) {
+      return res.status(400).json({ error: 'Missing required parameters: objective, data, proof_class' });
+    }
+
+    // LEVEL 1: RECRUITER
+    const recruiter = new Recruiter(agents);
+    const squad = recruiter.recruitSquad(objective);
+
+    // LEVEL 2: MASTER OF TRADE
+    const master = new MasterOfTrade();
+    const tradeOutput = await master.executeDomainTask(squad, data);
+
+    // LEVEL 3: MACHINE
+    // Note: In real life, registry is fetched from Fiat Justitia. Mocking allowed proof classes for now.
+    const machine = new Machine(); 
+    const verification = machine.verifyPipeline(tradeOutput, proof_class);
+
+    if (!verification.verified) {
+      return res.status(422).json({ error: 'Machine Verification Failed', log: verification.log });
+    }
+
+    // LEVEL 4: MESH
+    const mesh = new Mesh();
+    const syncResult = mesh.synchronize(verification, wss);
+
+    res.json({
+      status: 'OMNIVERSAL_EXECUTION_COMPLETE',
+      pipeline: {
+        recruiter: squad,
+        master_of_trade: tradeOutput,
+        machine: verification,
+        mesh: syncResult
+      }
+    });
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 app.get('/api/v1/actors', (req, res) => {
