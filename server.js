@@ -1,11 +1,9 @@
 /**
  * LEGAL POWERHOUSE - Unified Entry Point
- * 
- * Combines:
- * - Colossus Gateway (Keymaster + Gatekeeper)
- * - Fiat Justitia (Legal document engineering)
- * - Tower of Babel (Technology floors)
- * - Monolith (Library mapping)
+ *
+ * Orchestration gateway for legal investigation and work product.
+ * Factual authority remains with authenticated originals / operative official
+ * records and the reviewed CASEBRAIN machine contract.
  */
 
 const express = require('express');
@@ -13,53 +11,106 @@ const cors = require('cors');
 const { WebSocketServer } = require('ws');
 const http = require('http');
 const path = require('path');
+const fs = require('fs');
 
-// Load environment variables (no hardcoded secrets)
-// Use .env.local or system environment variables
 require('dotenv').config({ path: '.env.local' });
 
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocketServer({ server, path: '/ws' });
 
-// 4-Level Methodology
 const Recruiter = require('./core/Level1_Recruiter');
 const MasterOfTrade = require('./core/Level2_MasterOfTrade');
 const Machine = require('./core/Level3_Machine');
 const Mesh = require('./core/Level4_Mesh');
 
-// Middleware
+const agents = require('./shared/config/agents.json');
+const documents = require('./shared/config/documents.json');
+const canonicalAuthority = require('./shared/config/canonical-authority.json');
+
+const CASE_ID = canonicalAuthority.case_id;
+const CANONICAL_MACHINE_CONTRACT = `${canonicalAuthority.canonical_machine_contract.repository}/${canonicalAuthority.canonical_machine_contract.path}`;
+
+function validateAuthorityBinding() {
+  const errors = [];
+
+  if (documents.case_id !== canonicalAuthority.case_id) {
+    errors.push(`case_id mismatch: documents=${documents.case_id} authority=${canonicalAuthority.case_id}`);
+  }
+
+  if (documents.authority_contract !== 'shared/config/canonical-authority.json') {
+    errors.push(`unexpected authority_contract: ${documents.authority_contract}`);
+  }
+
+  if (documents.canonical_machine_contract !== CANONICAL_MACHINE_CONTRACT) {
+    errors.push(`canonical_machine_contract mismatch: documents=${documents.canonical_machine_contract} authority=${CANONICAL_MACHINE_CONTRACT}`);
+  }
+
+  if (documents.orchestration_role !== 'gateway_not_evidence_store') {
+    errors.push(`unexpected orchestration_role: ${documents.orchestration_role}`);
+  }
+
+  if (errors.length > 0) {
+    throw new Error(`Canonical authority binding failed: ${errors.join('; ')}`);
+  }
+}
+
+validateAuthorityBinding();
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Brain routes
 const brainRoutes = require('./routes/brain');
 app.use('/api/brain', brainRoutes);
 
-// Context compression routes
 const contextRoutes = require('./routes/context');
 app.use('/api', contextRoutes);
 
-// Agent routes
 const agentRoutes = require('./routes/agents');
 app.use('/api/agents', agentRoutes);
 
-// ==================== COLOSSUS GATEWAY ROUTES ====================
+function projectionBoundary(extra = {}) {
+  return {
+    case_id: CASE_ID,
+    authority: 'UNVERIFIED_INTERNAL_PROJECTION',
+    canonical_machine_contract: CANONICAL_MACHINE_CONTRACT,
+    substantive_authority: 'AUTHENTICATED_ORIGINAL_OR_OPERATIVE_OFFICIAL_RECORD',
+    promotion_state: 'BLOCKED_UNTIL_SOURCE_LINKED_AND_CONTRACT_VALIDATED',
+    ...extra
+  };
+}
 
-// System status
+function requireExplicitUnverifiedProjection(req, res, next) {
+  if (req.query.include_unverified !== 'true') {
+    return res.status(409).json(projectionBoundary({
+      error: 'Raw legacy casebuilder projection is not canonical evidence.',
+      action: 'Set include_unverified=true only for bounded investigative review; do not treat returned content as filing-ready fact.'
+    }));
+  }
+  next();
+}
+
+// ==================== STATUS / AUTHORITY ====================
+
 app.get('/api/status', (req, res) => {
   res.json({
     name: 'Legal Powerhouse',
-    version: '1.0.0',
-    tagline: 'The relentless pursuit of truth',
-    case: '1FDV-23-0001009',
+    version: '1.1.0-authority-gated',
+    case: CASE_ID,
+    runtime_state: 'SOURCE_REQUIRED_FAIL_CLOSED',
+    authority: {
+      canonical_machine_contract: CANONICAL_MACHINE_CONTRACT,
+      estate_catalog: canonicalAuthority.estate_catalog,
+      role: canonicalAuthority.legal_powerhouse_role,
+      truth_classes: canonicalAuthority.truth_classes
+    },
     components: {
-      colossus: { status: 'active', description: 'Keymaster + Gatekeeper' },
-      fiat_justitia: { status: 'active', description: 'Legal document engineering' },
-      tower_of_babel: { status: 'active', description: 'Technology floors' },
-      monolith: { status: 'active', description: 'Library mapping' },
-      casebrain: { status: 'active', description: 'Unified memory system' }
+      colossus: { status: 'configured', authority: 'none_for_case_facts' },
+      fiat_justitia: { status: 'route_candidate', authority: 'work_product_and_research_only' },
+      tower_of_babel: { status: 'route_candidate', authority: 'processing_only' },
+      monolith: { status: 'catalog_bound', authority: 'cartography_only' },
+      casebrain: { status: 'external_canonical_contract', authority: CANONICAL_MACHINE_CONTRACT }
     },
     uptime: process.uptime(),
     timestamp: new Date().toISOString()
@@ -67,9 +118,6 @@ app.get('/api/status', (req, res) => {
 });
 
 // ==================== KEYMASTER ROUTES ====================
-
-const agents = require('./shared/config/agents.json');
-const documents = require('./shared/config/documents.json');
 
 app.get('/api/agents', (req, res) => {
   res.json(agents);
@@ -85,21 +133,32 @@ app.get('/api/pistons', (req, res) => {
   res.json(agents.pistons);
 });
 
-// ==================== FIAT JUSTITIA ROUTES ====================
+// ==================== FIAT JUSTITIA / REGISTRY ROUTES ====================
 
 app.get('/api/documents', (req, res) => {
-  res.json(documents);
+  res.json({
+    ...documents,
+    authority_binding: {
+      status: 'validated_at_startup',
+      contract: documents.authority_contract
+    }
+  });
 });
 
 app.get('/api/documents/:category', (req, res) => {
   const category = req.params.category;
   const docs = documents.categories[category];
   if (!docs) return res.status(404).json({ error: 'Category not found' });
-  res.json({ category, ...docs });
+  res.json({ category, ...docs, authority: 'WORK_PRODUCT_REGISTRY_ONLY' });
 });
 
 app.get('/api/repositories', (req, res) => {
-  res.json(documents.repositories);
+  res.json({
+    case_id: CASE_ID,
+    exhaustive_catalog: canonicalAuthority.estate_catalog,
+    high_value_mesh: canonicalAuthority.repository_mesh,
+    rule: 'Repository presence, aliasing, backup lineage, or search match is not evidentiary corroboration.'
+  });
 });
 
 // ==================== MONOLITH ROUTES ====================
@@ -109,56 +168,47 @@ app.get('/api/monolith/spine', (req, res) => {
     const estatePath = path.join(__dirname, 'brain', 'monolith_estate.json');
     if (fs.existsSync(estatePath)) {
       const estateData = JSON.parse(fs.readFileSync(estatePath, 'utf8'));
-      // Add status and case_name dynamically for UI support
-      estateData.case_name = 'Kekoa Barton - Hawaii Family Court';
-      estateData.status = 'active';
-      return res.json(estateData);
+      return res.json({
+        ...estateData,
+        authority: 'CARTOGRAPHY_ONLY',
+        canonical_catalog: canonicalAuthority.estate_catalog,
+        truth_boundary: 'Monolith maps repository ownership and lineage; it does not own or authenticate evidence bytes.'
+      });
     }
-    // Fallback if not generated yet
-    res.json({
-      case_id: '1FDV-23-0001009',
-      case_name: 'Kekoa Barton - Hawaii Family Court',
-      status: 'active',
-      layers: {
-        legal_data: { count: 0, nodes: [] },
-        context_memory: { count: 0, nodes: [] },
-        work_product: { count: 0, nodes: [] },
-        legal_tech: { count: 0, nodes: [] }
-      },
-      total_repos: 0
+
+    res.status(404).json({
+      case_id: CASE_ID,
+      status: 'LOCAL_PROJECTION_NOT_PRESENT',
+      canonical_catalog: canonicalAuthority.estate_catalog,
+      authority: 'CARTOGRAPHY_ONLY'
     });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to read monolith estate: ' + error.message });
+    res.status(500).json({ error: `Failed to read local Monolith projection: ${error.message}` });
   }
 });
 
 // ==================== EVIDENCE ROUTES ====================
 
 app.get('/api/evidence', (req, res) => {
-  res.json({
-    case_id: '1FDV-23-0001009',
-    evidence_types: [
-      { type: 'documentary', count: 27, status: 'ready' },
-      { type: 'audio', count: 4, status: 'pending_transcription' },
-      { type: 'digital', count: 12, status: 'authenticated' },
-      { type: 'expert', count: 3, status: 'retained' }
-    ],
-    total_exhibits: 46,
-    filing_readiness: '87%'
+  res.status(409).json({
+    case_id: CASE_ID,
+    status: 'SOURCE_REQUIRED',
+    authority: 'NO_HARD_CODED_EVIDENCE_COUNTS',
+    source_planes: canonicalAuthority.planes,
+    required_for_promotion: canonicalAuthority.required_proposition_fields,
+    message: 'Evidence counts, authentication status, experts, exhibit readiness, and filing readiness must be computed from source-linked CASEBRAIN records and receipts; this runtime does not invent them.'
   });
 });
 
 // ==================== MASTER CASEBUILDER & ACTORS ROUTES ====================
-
-const fs = require('fs');
 
 function getCasebuilderData() {
   const casebuilderPath = path.join(__dirname, 'brain', 'CASE_1FDV-23-0001009_COMPLETE_CASEBUILDER.json');
   if (fs.existsSync(casebuilderPath)) {
     try {
       return JSON.parse(fs.readFileSync(casebuilderPath, 'utf8'));
-    } catch (e) {
-      console.error('Error reading casebuilder JSON:', e);
+    } catch (error) {
+      console.error('Error reading casebuilder JSON:', error);
     }
   }
   return null;
@@ -167,17 +217,17 @@ function getCasebuilderData() {
 const v1Auth = (req, res, next) => {
   const token = req.headers['x-api-key'] || req.query.token;
   if (!token || token !== process.env.LEGAL_POWERHOUSE_API_KEY) {
-    return res.status(401).json({ error: 'Unauthorized: Access Denied to Omniversal Apex API' });
+    return res.status(401).json({ error: 'Unauthorized' });
   }
   next();
 };
 
 app.use('/api/v1', v1Auth);
 
-app.get('/api/v1/casebuilder', (req, res) => {
+app.get('/api/v1/casebuilder', requireExplicitUnverifiedProjection, (req, res) => {
   const data = getCasebuilderData();
-  if (data) return res.json(data);
-  res.status(404).json({ error: 'Casebuilder data not found' });
+  if (!data) return res.status(404).json({ error: 'Casebuilder projection not found' });
+  return res.json(projectionBoundary({ data }));
 });
 
 app.post('/api/v1/omni-execute', async (req, res) => {
@@ -187,29 +237,32 @@ app.post('/api/v1/omni-execute', async (req, res) => {
       return res.status(400).json({ error: 'Missing required parameters: objective, data, proof_class' });
     }
 
-    // LEVEL 1: RECRUITER
     const recruiter = new Recruiter(agents);
     const squad = recruiter.recruitSquad(objective);
 
-    // LEVEL 2: MASTER OF TRADE
     const master = new MasterOfTrade();
     const tradeOutput = await master.executeDomainTask(squad, data);
 
-    // LEVEL 3: MACHINE
-    // Note: In real life, registry is fetched from Fiat Justitia. Mocking allowed proof classes for now.
-    const machine = new Machine(); 
+    const machine = new Machine({
+      proof_classes: documents.proof_classes,
+      authority: canonicalAuthority
+    });
     const verification = machine.verifyPipeline(tradeOutput, proof_class);
 
     if (!verification.verified) {
-      return res.status(422).json({ error: 'Machine Verification Failed', log: verification.log });
+      return res.status(422).json({
+        error: 'Canonical proposition gate failed',
+        verification,
+        truth_boundary: 'No promotion, filing-readiness claim, or external synchronization occurred.'
+      });
     }
 
-    // LEVEL 4: MESH
     const mesh = new Mesh();
     const syncResult = mesh.synchronize(verification, wss);
 
     res.json({
-      status: 'OMNIVERSAL_EXECUTION_COMPLETE',
+      status: 'CONTRACT_VALIDATED_LOCAL_ONLY',
+      truth_boundary: verification.verification_boundary,
       pipeline: {
         recruiter: squad,
         master_of_trade: tradeOutput,
@@ -217,89 +270,91 @@ app.post('/api/v1/omni-execute', async (req, res) => {
         mesh: syncResult
       }
     });
-
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
-app.get('/api/v1/actors', (req, res) => {
+app.get('/api/v1/actors', requireExplicitUnverifiedProjection, (req, res) => {
   const data = getCasebuilderData();
   if (data && data.actor_matrix) {
-    return res.json({ case_id: data.case_id, total: data.total_actors, actors: data.actor_matrix });
+    return res.json(projectionBoundary({
+      total_reported_by_legacy_projection: data.total_actors,
+      actors: data.actor_matrix
+    }));
   }
-  res.status(404).json({ error: 'Actor matrix not found' });
+  res.status(404).json({ error: 'Actor projection not found' });
 });
 
-app.get('/api/v1/timeline', (req, res) => {
+app.get('/api/v1/timeline', requireExplicitUnverifiedProjection, (req, res) => {
   const data = getCasebuilderData();
   if (data && data.master_timeline) {
-    return res.json({ case_id: data.case_id, total: data.total_timeline_events, timeline: data.master_timeline });
+    return res.json(projectionBoundary({
+      total_reported_by_legacy_projection: data.total_timeline_events,
+      timeline: data.master_timeline
+    }));
   }
-  res.json({
-    case_id: '1FDV-23-0001009',
-    key_dates: [
-      { date: '2023-05-31', event: 'Original Ex Parte TRO Issued' },
-      { date: '2023-06-30', event: 'Original TRO Lapsed by Operation of Law' },
-      { date: '2024-10-03', event: 'HPD Report WEBU350142 (3 versions)' },
-      { date: '2024-10-07', event: 'CSEA 13-Hour Notice Mailed (9:57 PM)' },
-      { date: '2024-10-08', event: '$3,500/Month Support Order Issued' },
-      { date: '2026-08-07', event: 'Federal RICO Complaint Certified' }
-    ],
-    status: 'active_litigation'
+  res.status(404).json({
+    error: 'Timeline projection not found',
+    truth_boundary: 'No fallback dates or legal conclusions are generated.'
   });
 });
 
-app.get('/api/v1/violations', (req, res) => {
+app.get('/api/v1/violations', requireExplicitUnverifiedProjection, (req, res) => {
   const data = getCasebuilderData();
   if (data && data.violations_matrix) {
-    return res.json({ case_id: data.case_id, total: data.total_statutory_violations, violations: data.violations_matrix });
+    return res.json(projectionBoundary({
+      total_reported_by_legacy_projection: data.total_statutory_violations,
+      violations: data.violations_matrix
+    }));
   }
-  res.status(404).json({ error: 'Violations matrix not found' });
+  res.status(404).json({ error: 'Violations projection not found' });
 });
 
 // ==================== WEBSOCKET ====================
 
 wss.on('connection', (ws) => {
   console.log('Client connected to Legal Powerhouse');
-  
+
   ws.send(JSON.stringify({
     type: 'welcome',
     message: 'Connected to Legal Powerhouse',
-    tagline: 'The relentless pursuit of truth',
-    services: ['colossus', 'fiat-justitia', 'tower-of-babel', 'monolith']
+    case: CASE_ID,
+    runtime_state: 'SOURCE_REQUIRED_FAIL_CLOSED',
+    canonical_machine_contract: CANONICAL_MACHINE_CONTRACT
   }));
 
   ws.on('message', (data) => {
     try {
       const msg = JSON.parse(data);
-      
+
       switch (msg.type) {
         case 'status':
           ws.send(JSON.stringify({
             type: 'status',
             data: {
-              case: '1FDV-23-0001009',
-              status: 'active',
-              readiness: '87%'
+              case: CASE_ID,
+              status: 'source_required_fail_closed',
+              readiness: null,
+              canonical_machine_contract: CANONICAL_MACHINE_CONTRACT
             }
           }));
           break;
         case 'agents':
-          ws.send(JSON.stringify({
-            type: 'agents',
-            data: agents.agents
-          }));
+          ws.send(JSON.stringify({ type: 'agents', data: agents.agents }));
           break;
         case 'documents':
           ws.send(JSON.stringify({
             type: 'documents',
+            authority: 'WORK_PRODUCT_REGISTRY_ONLY',
             data: documents.categories
           }));
           break;
+        default:
+          ws.send(JSON.stringify({ type: 'error', message: 'Unknown message type' }));
       }
-    } catch (e) {
-      ws.send(JSON.stringify({ type: 'error', message: e.message }));
+    } catch (error) {
+      ws.send(JSON.stringify({ type: 'error', message: error.message }));
     }
   });
 
@@ -314,25 +369,14 @@ const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, () => {
   console.log(`
-╔══════════════════════════════════════════════════════════╗
-║           LEGAL POWERHOUSE v1.0.0                        ║
-║           "The relentless pursuit of truth"              ║
-║                                                          ║
-║  Case: 1FDV-23-0001009                                   ║
-║  Matter: Kekoa Barton - Hawaii Family Court              ║
-║                                                          ║
-║  Components:                                             ║
-║    • Colossus Gateway (Keymaster + Gatekeeper)           ║
-║    • Fiat Justitia (Legal document engineering)          ║
-║    • Tower of Babel (Technology floors)                  ║
-║    • Monolith (Library mapping)                          ║
-║                                                          ║
-║  HTTP:  http://localhost:${PORT}                           ║
-║  WS:    ws://localhost:${PORT}/ws                          ║
-║                                                          ║
-║  Fiat justitia ruat caelum.                              ║
-╚══════════════════════════════════════════════════════════╝
+LEGAL POWERHOUSE v1.1.0-authority-gated
+Case: ${CASE_ID}
+Role: orchestration gateway; not an evidence store
+Canonical machine contract: ${CANONICAL_MACHINE_CONTRACT}
+Runtime: SOURCE_REQUIRED_FAIL_CLOSED
+HTTP: http://localhost:${PORT}
+WS: ws://localhost:${PORT}/ws
   `);
 });
 
-module.exports = { app, server };
+module.exports = { app, server, validateAuthorityBinding };
