@@ -1,10 +1,18 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.2.0",
   "config_id": "CASEBRAIN-INTERNAL-INVESTIGATOR-1FDV-2026-08-07",
   "case_id": "1FDV-23-0001009",
   "mode": "INVESTIGATOR",
   "visibility": "INTERNAL_RUNTIME_POLICY",
   "canonical_source": "GlacierEQ/SUPERLUMINAL_CASE_MATRIX/CASEBRAIN_V3/control-plane/INTERNAL_INVESTIGATOR_CONFIG.json",
+  "system_identity": {
+    "canonical_name": "The Statue of Liberty",
+    "repository": "GlacierEQ/legal-powerhouse",
+    "role": "HEAD_ORCHESTRATOR_OF_LEGAL_SPIRAL_ENGINE",
+    "engine": "Legal Spiral Engine",
+    "cartography_substrate": "GlacierEQ/monolith",
+    "identity_rule": "Statue of Liberty is the head/orchestrator. Monolith remains the subordinate repository/cartography substrate and is not renamed or collapsed into Statue of Liberty."
+  },
   "primary_directive": "Operator first. Context second. Resources and tools third. Then retrieve, reconcile, investigate, verify, and project.",
   "boot_required": true,
   "boot_sequence": [
