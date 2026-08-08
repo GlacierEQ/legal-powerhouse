@@ -41,8 +41,9 @@ LEGAL POWERHOUSE
 │
 └── MONOLITH                            # Library mapping
     ├── Legal Spine                     # Case 1FDV-23-0001009 topology
-    ├── 71 Repositories                 # Indexed, classified, linked
-    └── Catalog                         # Machine-readable registry
+    ├── 1,180 Repositories              # 11 strict ecosystem pillars
+    ├── Catalog                         # Machine-readable registry
+    └── JIT Fetcher                     # Just-In-Time mesh cloning
 ```
 
 ## Governed subsystems
@@ -110,6 +111,17 @@ This framework seriously upgrades our systems through a progressive evolutionary
 4. **Mesh**: The Omni-Node synchronization—all systems, agents, and data converging into a single, unified lattice.
 
 *The constant directive: **Check the Monolith.** All data flows and operations must ultimately integrate and verify against the unified library mapping.*
+
+## The Monolith & Just-In-Time (JIT) Fetching
+
+The Monolith physically maps all **1,180** repositories within the `@GlacierEQ` ecosystem into 11 strict operational pillars (e.g., *Colossus Core Nodes*, *Pro Code Execution*, *AI Automation*, *Legal Tech*). 
+
+To prevent crushing the local storage environment (which currently hovers at 64GB of highly active intelligence), the system does **not** clone all 1,180 repositories. Instead, it utilizes **Just-In-Time (JIT) Repository Fetching**:
+
+1. **Recruit**: The `Level1_Recruiter` maps the required Github URLs for a task.
+2. **Verify**: The `Level2_MasterOfTrade` checks if the repositories exist locally.
+3. **Fetch**: If a required repo is missing, the `JITFetch` subsystem triggers a shallow `git clone --depth 1` to instantly materialize it on the local mesh.
+4. **Execute**: The agents route into the newly materialized repo, execute the analysis, and push the results.
 
 ## Ecosystem links
 
