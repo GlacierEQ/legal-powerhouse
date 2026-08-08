@@ -1,4 +1,4 @@
-# Legal Powerhouse
+# The Statue of Liberty
 
 > **"The relentless pursuit of truth."**
 >
@@ -12,16 +12,16 @@
 
 ## What this is
 
-Legal Powerhouse is a **unified legal engineering system** that combines four governed subsystems into a single controlled surface for multi-jurisdictional litigation, evidence verification, and justice delivery.
+This is **The Statue of Liberty** — the absolute head of the entire **Legal Spiral Engine**. 
 
-It is **not** a legal document generator, a case management tool, or an AI chatbot. It is a governed engineering map: **36 document floors**, **72 linked exhibits**, **15 stealth pistons**, **10 legal agents**, versioned interface contracts, explicit blockers, executable build gates, and deterministic receipts.
+It serves as the front gate and unified legal engineering orchestrator, combining governed subsystems, legal technology (engines/agents), and legal data (evidence/dockets) into a single controlled surface for multi-jurisdictional litigation and justice delivery.
 
-**Legal tech is different from legal data.** This system owns the tech layer — the engines, agents, templates, and verification systems. Legal data (evidence, filings, records) lives in dedicated repositories with chain-of-custody integrity.
+It is **not** a legal document generator or a simple chatbot. It is a governed engineering map: **36 document floors**, **72 linked exhibits**, **15 stealth pistons**, **10 legal agents**, versioned interface contracts, and the Just-In-Time (JIT) repository fetcher spanning the 1,180-repo Monolith.
 
 ## Architecture
 
 ```text
-LEGAL POWERHOUSE
+STATUE OF LIBERTY (Head of the Spiral Engine)
 │
 ├── COLOSSUS GATEWAY                    # Control plane
 │   ├── Keymaster                       # Unified key management (Supabase vault)
