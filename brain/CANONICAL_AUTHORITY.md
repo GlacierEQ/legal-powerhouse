@@ -22,28 +22,35 @@ The controlling topology is:
    - source locators;
    - validation rules;
    - receipts and version history.
-3. **Evidence custody — persistent Library and restricted Box proofbooks**
+3. **Legal-estate cartography — `GlacierEQ/monolith/catalog/legal_spines/1FDV-23-0001009*`**
+   - exhaustive case-repository mapping and alias groups;
+   - ownership-layer classification;
+   - discovery-candidate queue;
+   - migration order and no-delete invariants;
+   - Monolith maps; owning repositories execute;
+   - repository presence or search match is not evidence.
+4. **Evidence custody — persistent Library and restricted Box proofbooks**
    - authenticated binaries;
    - hashes;
    - provenance;
    - actor proofbooks;
    - restricted evidence.
-4. **Court-preparation plane — Google Drive**
+5. **Court-preparation plane — Google Drive**
    - working documents;
    - exhibit manifests;
    - court-ready derivatives;
    - preparation packages.
-5. **Raw/recovery plane — Dropbox**
+6. **Raw/recovery plane — Dropbox**
    - original media and large-source archives;
    - bounded intake and recovery;
    - not a mixed-root canonical fact store.
-6. **Human governance plane — Notion**
+7. **Human governance plane — Notion**
    - navigation;
    - review;
    - decision state;
    - queues and linked summaries;
    - never sole evidence.
-7. **Legal Powerhouse**
+8. **Legal Powerhouse**
    - discovery;
    - retrieval;
    - orchestration;
@@ -85,6 +92,8 @@ Highest to lowest:
 
 When sources conflict, preserve both and create a contradiction record. Never silently select the version that best fits a theory.
 
+Repository duplication is not corroboration. Forks, backups, renamed successors, archive copies, derivative exports, and repeated generated prose count as one lineage unless independent provenance establishes a separate source.
+
 ## 4. Proposition contract
 
 Every material proposition SHOULD resolve to a machine object containing at least:
@@ -111,6 +120,14 @@ Every material proposition SHOULD resolve to a machine object containing at leas
 No source locator means no promotion to `ESTABLISHED_RECORD_FACT`.
 
 ## 5. Repository mesh
+
+The exhaustive cartographic source is the Monolith legal spine:
+
+- `GlacierEQ/monolith/catalog/legal_spines/1FDV-23-0001009.json`
+- `GlacierEQ/monolith/catalog/legal_spines/1FDV-23-0001009-index.json`
+- `GlacierEQ/monolith/catalog/legal_spines/1FDV-23-0001009-discovery-candidates.json`
+
+At the 2026-08-03 generation, it records **47 assigned repositories and 43 discovery candidates (90 total case-bearing repositories/candidates)**. The lists below identify high-value owning surfaces; they are not a second exhaustive inventory.
 
 ### Canonical legal-data / source-index lane
 
@@ -202,10 +219,11 @@ Queued, configured, simulated, stale, or unverified activity is not completion.
 Before Legal Powerhouse labels its current case brain authoritative, it must:
 
 1. bind its casebrain output to CASEBRAIN V3 truth classes;
-2. attach source locators to every factual proposition;
-3. move probability/culpability fields into a non-evidentiary hypothesis namespace or remove them from filing-facing projections;
-4. emit contradiction nodes instead of silently resolving conflicting sources;
-5. verify that every repository projected as a source has an explicit role and authority level;
-6. make all filing/export paths fail closed when a required source, truth class, or legal-lane gate is absent.
+2. consume the Monolith legal spine rather than maintain an untracked second repository inventory;
+3. attach source locators to every factual proposition;
+4. move probability/culpability fields into a non-evidentiary hypothesis namespace or remove them from filing-facing projections;
+5. emit contradiction nodes instead of silently resolving conflicting sources;
+6. verify that every repository projected as a source has an explicit role and authority level;
+7. make all filing/export paths fail closed when a required source, truth class, or legal-lane gate is absent.
 
 **Canonical principle:** investigate broadly; preserve aggressively; classify precisely; prove before promotion.
