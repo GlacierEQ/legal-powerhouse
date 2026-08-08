@@ -1,37 +1,103 @@
-# The Statue of Liberty
+# The Statue of Liberty — Head of the Legal Spiral Engine
 
 > **"The relentless pursuit of truth."**
 >
 > *Fiat justitia ruat caelum.* — Let justice be done though the heavens fall.
 
-[![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg)](#license)
+[![License: Proprietary (APEX-TIER)](https://img.shields.io/badge/License-Proprietary-red.svg)](#license)
 [![Case: 1FDV-23-0001009](https://img.shields.io/badge/Case-1FDV--23--0001009-gold.svg)](https://github.com/GlacierEQ)
 [![Status: Active](https://img.shields.io/badge/Status-Active-brightgreen.svg)](https://github.com/GlacierEQ/legal-powerhouse)
 
 ---
 
-## What this is
+## 1. The Recruiter (Executive Signal)
 
-This is **The Statue of Liberty** — the absolute head of the entire **Legal Spiral Engine**. 
+*The front gate. What this is, why it matters, and the evidence it produces.*
 
-It serves as the front gate and unified legal engineering orchestrator, combining governed subsystems, legal technology (engines/agents), and legal data (evidence/dockets) into a single controlled surface for multi-jurisdictional litigation and justice delivery.
+This is **The Statue of Liberty** — the absolute head of the **Legal Spiral Engine**. 
 
-It is **not** a legal document generator or a simple chatbot. It is a governed engineering map: **36 document floors**, **72 linked exhibits**, **15 stealth pistons**, **10 legal agents**, versioned interface contracts, and the Just-In-Time (JIT) repository fetcher spanning the 1,180-repo Monolith.
+It serves as the front gate and unified legal engineering orchestrator, combining governed subsystems, legal technology (engines/agents), and isolated legal data (evidence/dockets) into a single controlled surface for multi-jurisdictional litigation and justice delivery.
 
-## Architecture
+It is **not** a legal document generator or a simple chatbot. It is a governed engineering map: **36 document floors**, **72 linked exhibits**, **15 stealth pistons**, **10 legal agents**, versioned interface contracts, and a Just-In-Time (JIT) repository fetcher spanning a 1,180-repo Monolith.
+
+**The Differentiator:** This system enforces procedural truth. It does not guess. If a docket's metadata is scrubbed, if an attorney is illegally removed, or if a filing date is distorted, this system detects the anomaly mathematically and generates the necessary RICO/Federal response. 
+
+---
+
+## 2. The Master of Trade (Architecture & Execution)
+
+*Engineering detail, failure semantics, and proof execution.*
+
+### The 4-Level Pipeline
+
+The system processes legal conflict through a strict, monotonic application spiral: `OBSERVE → RECOVER → PLAN → ROUTE → ACT → VERIFY → PERSIST → RESUME`.
+
+1. **Level 1 (Recruiter):** Evaluates incoming legal text (court orders, opposing motions) and maps it to the 11-pillar taxonomy.
+2. **Level 2 (Master of Trade):** Engages the `JITFetch` mechanism. It pings the `monolith_estate.json` registry, locates the required evidence or case law repositories, and dynamically clones them into the local workspace.
+3. **Level 3 (Machine):** Deterministic execution. The Omni Node (Apex Gemma 4) analyzes the raw data against the `DOCKETS` JSON schema and federal statutes.
+4. **Level 4 (Mesh):** Emits actionable legal vectors (motions, subpeonas, audit demands) back out to the `FEDERAL-WARFARE` layer for filing.
+
+### The 5-Repo Core Data Flow
+
+Legal tech is strictly separated from legal data. The engine orchestrates these five immutable pillars:
+*   `DOCKETS`: The immutable chronological ledger and metadata verification engine.
+*   `THE_CATACLYSM`: Raw evidence, audio/video payloads, and exhibit storage.
+*   `SUPERLUMINAL_CASE_MATRIX`: The structured brain and strategic relationships.
+*   `1FDV-23-0001009-FEDERAL-WARFARE`: The offensive arsenal and RICO predicate tracking.
+*   `case-1FDV-23-0001009-legal-documents`: The production floor for finalized filings.
+
+---
+
+## 3. The Machine (Machine Contract)
+
+*Deterministic inputs, outputs, schemas, and AI toolchain directives.*
+
+```yaml
+schema: glaciereq.legal.v1
+profile: glaciereq.statue-of-liberty.v1-draft
+repository: GlacierEQ/legal-powerhouse
+canonical_branch: main
+purpose: >-
+  Govern the multi-repo legal engine, execute Just-In-Time (JIT) repo fetching, 
+  and orchestrate the 4-level omniversal agentic pipeline against legal anomalies.
+
+status:
+  state: ARMED
+  verified_scope:
+    - JIT cloning from monolith_estate.json
+    - Subsystem ping and validation
+  unverified_scope:
+    - Full end-to-end multi-agent federal litigation execution
+
+interfaces:
+  inputs:
+    - brain/monolith_estate.json
+    - court orders / opposing motions
+    - raw JEFS metadata logs
+  outputs:
+    - RICO predicates
+    - forensic audit demands
+    - validated motions
+
+policy:
+  evidence_ladder:
+    - METADATA_EXTRACTED
+    - ANOMALY_DETECTED
+    - PREDICATE_FORMED
+    - MOTION_DRAFTED
+    - FILED
+  fail_closed: true
+```
+
+---
+
+## 4. The Mesh (Topology & Relationships)
+
+*System topology, cross-repo connections, and combined value.*
+
+The control plane sits at the top of the Monolith, connected via the Omni Node.
 
 ```text
-STATUE OF LIBERTY (Head of the Spiral Engine)
-│
-├── COLOSSUS GATEWAY                    # Control plane
-│   ├── Keymaster                       # Unified key management (Supabase vault)
-│   └── Gatekeeper                      # Agent swarm orchestration
-│
-├── FIAT JUSTITIA                       # Legal document engineering
-│   ├── Motions                         # 5 types (12(b)(6), 56, 65, 60, void)
-│   ├── Complaints                      # 4 types (§1983, RICO, TRO, federal)
-│   ├── Evidence                        # 5 types (documentary, expert, digital, audio)
-│   ├── Remedies                        # 5 types (compensatory, punitive, treble, injunctive)
 │   └── Agents                          # 15 stealth pistons, 10 legal agents
 │
 ├── TOWER OF BABEL                      # Technology floors
