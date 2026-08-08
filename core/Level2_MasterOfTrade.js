@@ -1,6 +1,7 @@
 const { execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const JITFetch = require('./JITFetch');
 
 class MasterOfTrade {
   /**
@@ -10,11 +11,20 @@ class MasterOfTrade {
    */
   async executeDomainTask(squadDeployment, rawData) {
     const { commander, pistons } = squadDeployment.squad;
+    const meshedLinks = squadDeployment.meshed_links || [];
     
     // Simulate deep domain execution
     const executionTrace = [];
     executionTrace.push(`[INIT] Commander ${commander.name || commander} assuming control.`);
     
+    // [PHASE 1]: Just-In-Time (JIT) Resource Verification
+    if (meshedLinks.length > 0) {
+      executionTrace.push(`[JIT-VERIFY] Scanning meshed links for physical presence...`);
+      for (const link of meshedLinks) {
+        JITFetch.ensureRepo(link.url, link.name, executionTrace);
+      }
+    }
+
     let confidenceScore = 1.0;
 
     for (const piston of pistons) {
