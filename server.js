@@ -32,6 +32,11 @@ const internalInvestigator = require('./shared/config/internal-investigator.json
 const CASE_ID = canonicalAuthority.case_id;
 const CANONICAL_MACHINE_CONTRACT = `${canonicalAuthority.canonical_machine_contract.repository}/${canonicalAuthority.canonical_machine_contract.path}`;
 const INTERNAL_INVESTIGATOR_CONFIG_ID = internalInvestigator.config_id;
+const REQUIRED_BOOT_PREFIX = [
+  'RESOLVE_OPERATOR_DIRECTIVE',
+  'LOAD_RELEVANT_CONTEXT',
+  'DISCOVER_AND_INVOKE_RESOURCES_AND_TOOLS'
+];
 
 function validateAuthorityBinding() {
   const errors = [];
@@ -77,8 +82,22 @@ function validateInternalInvestigatorBinding() {
     errors.push(`unexpected canonical_source: ${internalInvestigator.canonical_source}`);
   }
 
-  if (!Array.isArray(internalInvestigator.boot_sequence) || internalInvestigator.boot_sequence.length < 5) {
+  if (!Array.isArray(internalInvestigator.boot_sequence) || internalInvestigator.boot_sequence.length < 6) {
     errors.push('boot_sequence is incomplete');
+  } else {
+    REQUIRED_BOOT_PREFIX.forEach((expectedAction, index) => {
+      if (internalInvestigator.boot_sequence[index] !== expectedAction) {
+        errors.push(`boot_sequence[${index}] must be ${expectedAction}, got ${internalInvestigator.boot_sequence[index]}`);
+      }
+    });
+  }
+
+  if (internalInvestigator.context_policy?.position !== 2) {
+    errors.push('context_policy.position must be 2');
+  }
+
+  if (internalInvestigator.resource_tool_policy?.position !== 3) {
+    errors.push('resource_tool_policy.position must be 3');
   }
 
   if (!Array.isArray(internalInvestigator.hard_fail_rules) || internalInvestigator.hard_fail_rules.length === 0) {
@@ -134,13 +153,14 @@ function requireExplicitUnverifiedProjection(req, res, next) {
 app.get('/api/status', (req, res) => {
   res.json({
     name: 'Legal Powerhouse',
-    version: '1.2.0-investigator-gated',
+    version: '1.2.1-operator-context-tools',
     case: CASE_ID,
     runtime_state: 'INVESTIGATOR_SOURCE_REQUIRED_FAIL_CLOSED',
     investigator: {
       mode: internalInvestigator.mode,
       config_id: INTERNAL_INVESTIGATOR_CONFIG_ID,
       boot_required: internalInvestigator.boot_required,
+      boot_sequence: internalInvestigator.boot_sequence,
       canonical_source: internalInvestigator.canonical_source,
       primary_directive: internalInvestigator.primary_directive
     },
@@ -427,9 +447,10 @@ const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, () => {
   console.log(`
-LEGAL POWERHOUSE v1.2.0-investigator-gated
+LEGAL POWERHOUSE v1.2.1-operator-context-tools
 Case: ${CASE_ID}
 Mode: ${internalInvestigator.mode}
+Boot: ${internalInvestigator.boot_sequence.join(' -> ')}
 Internal config: ${INTERNAL_INVESTIGATOR_CONFIG_ID}
 Role: orchestration gateway; not an evidence store
 Canonical machine contract: ${CANONICAL_MACHINE_CONTRACT}
