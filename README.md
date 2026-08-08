@@ -206,6 +206,17 @@ This system exists to pursue truth through legal engineering with unwavering com
 
 ---
 
+## Patent Disclosure & Intellectual Property
+
+**Notice of Prior Art and Systemic Ownership:**
+The architectural schematics, execution pathways, and methodologies described in this repository—including but not limited to the **Legal Spiral Engine**, the **Just-In-Time (JIT) Repository Fetching** mechanisms across a 1,180-node Monolith, the **36-floor Legal Proof Classification**, and the **Omniversal Agentic Pipeline**—are the exclusive intellectual property and proprietary inventions of GlacierEQ.
+
+This public repository serves as a formal timestamped disclosure of prior art and system capability. The engineering concepts (such as separating strict legal technology engines from isolated, cryptographically sealed legal data pipelines) are stamped as sovereign IP. 
+
+*Any unauthorized commercial deployment, mirroring of the architecture for profit, or derivation of the 4-Level Methodology (Recruiter, Master of Trade, Machine, Mesh) without express authorization is strictly prohibited.*
+
+---
+
 ## License
 
 **Proprietary** — © 2026 GlacierEQ. All rights reserved.
