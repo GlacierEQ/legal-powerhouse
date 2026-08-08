@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.2.0",
+  "schema_version": "1.2.1",
   "case_id": "1FDV-23-0001009",
   "contract": "canonical-authority",
   "legal_powerhouse_role": "orchestration_gateway",
@@ -27,7 +27,7 @@
     "T2_SOURCE_INDEX_OR_CUSTODY_ADAPTER": "Source indexes, case packs, forensic working sets, archive/custody adapters requiring item-level authentication.",
     "T3_CONTEXT_MEMORY": "Continuity and context only; never independent evidentiary authority.",
     "T4_WORK_PRODUCT": "Drafts, legal theories, research, publication, and filing work product.",
-    "T5_TECHNOLOGY": "Processing, automation, connectors, validation, and presentation; no independent case-fact authority."
+    "T5_TECHNOLOGY": "Processing, automation, connectors, validation, presentation, and planned-but-unverified custody systems; no independent case-fact authority."
   },
   "source_precedence": [
     "OPERATIVE_OFFICIAL_RECORD",
@@ -68,8 +68,7 @@
       {"repository": "GlacierEQ/CASE-1FDV-23-0001009", "role": "primary_case_pack", "authority_level": "T2_SOURCE_INDEX_OR_CUSTODY_ADAPTER"},
       {"repository": "GlacierEQ/CASE-1FDV-23-0001009-LEAN", "role": "bounded_case_representation", "authority_level": "T2_SOURCE_INDEX_OR_CUSTODY_ADAPTER"},
       {"repository": "GlacierEQ/CYBERTACK-1FDV-23-0001009", "role": "forensic_working_set", "authority_level": "T2_SOURCE_INDEX_OR_CUSTODY_ADAPTER"},
-      {"repository": "GlacierEQ/THE_CATACLYSM", "role": "source_archive_family", "authority_level": "T2_SOURCE_INDEX_OR_CUSTODY_ADAPTER"},
-      {"repository": "GlacierEQ/EVIDENCE-VAULT-ENCRYPTED", "role": "evidence_custody_capability", "authority_level": "T2_SOURCE_INDEX_OR_CUSTODY_ADAPTER"}
+      {"repository": "GlacierEQ/THE_CATACLYSM", "role": "source_archive_family", "authority_level": "T2_SOURCE_INDEX_OR_CUSTODY_ADAPTER"}
     ],
     "context_memory": [
       {"repository": "GlacierEQ/AspenGrove-KEKOA-1FDV-23-0001009", "role": "case_context", "authority_level": "T3_CONTEXT_MEMORY"},
@@ -84,6 +83,7 @@
       {"repository": "GlacierEQ/CASE-LAW-ARSENAL", "role": "authority_research", "authority_level": "T4_WORK_PRODUCT"}
     ],
     "legal_technology": [
+      {"repository": "GlacierEQ/EVIDENCE-VAULT-ENCRYPTED", "role": "planned_evidence_custody_design_placeholder", "authority_level": "T5_TECHNOLOGY", "audit_state": "Documentation-only in inspected main/history on 2026-08-07; claimed evidence tree and 187-item inventory absent; QA manifest identifies simulation.", "promotion_gate": "Exact evidence object + provider/native identity + authenticated bytes/locator + locally computed hash + provenance + custody receipt."},
       {"repository": "GlacierEQ/casey-legal-mcp-server", "role": "connector_runtime", "authority_level": "T5_TECHNOLOGY"},
       {"repository": "GlacierEQ/hawaii-family-court-legal-automation", "role": "court_automation", "authority_level": "T5_TECHNOLOGY"},
       {"repository": "GlacierEQ/hawaii-docket-automation", "role": "docket_automation", "authority_level": "T5_TECHNOLOGY"},
