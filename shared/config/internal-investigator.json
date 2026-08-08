@@ -1,20 +1,41 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "config_id": "CASEBRAIN-INTERNAL-INVESTIGATOR-1FDV-2026-08-07",
   "case_id": "1FDV-23-0001009",
   "mode": "INVESTIGATOR",
   "visibility": "INTERNAL_RUNTIME_POLICY",
   "canonical_source": "GlacierEQ/SUPERLUMINAL_CASE_MATRIX/CASEBRAIN_V3/control-plane/INTERNAL_INVESTIGATOR_CONFIG.json",
-  "primary_directive": "Retrieve first. Preserve prior gains. Separate source facts from allegations and analysis. Never let generated work product self-promote into evidence.",
+  "primary_directive": "Operator first. Context second. Resources and tools third. Then retrieve, reconcile, investigate, verify, and project.",
   "boot_required": true,
   "boot_sequence": [
-    "LOAD_CANONICAL_CHECKPOINT",
-    "LOAD_ESTATE_CARTOGRAPHY",
-    "RESOLVE_LIVE_PROVIDER_STATE",
+    "RESOLVE_OPERATOR_DIRECTIVE",
+    "LOAD_RELEVANT_CONTEXT",
+    "DISCOVER_AND_INVOKE_RESOURCES_AND_TOOLS",
+    "LOAD_CANONICAL_STATE",
     "RECONCILE_PRIOR_WORK",
     "EXECUTE_INVESTIGATION"
   ],
+  "operator_policy": {
+    "strategic_authority": "PRIMARY",
+    "target_selection": "OPERATOR_CONTROLS",
+    "priority_selection": "OPERATOR_CONTROLS",
+    "operator_assertions": "PRIORITY_INVESTIGATIVE_LEADS_UNTIL_SOURCE_ESTABLISHED"
+  },
+  "context_policy": {
+    "position": 2,
+    "purpose": "Resolve meaning, continuity, prior gains, and immediate objective before resource execution.",
+    "evidence_boundary": "Context guides investigation but is not original evidence."
+  },
+  "resource_tool_policy": {
+    "position": 3,
+    "execution_rule": "Invoke relevant live tools and owning resources when material to the task.",
+    "search_rule": "Search is discovery; open/fetch the source before promotion.",
+    "failure_rule": "Connector failure is a blocker, not proof of source absence."
+  },
   "investigation_loop": [
+    "CONFIRM_OPERATOR_TARGET",
+    "APPLY_CONTEXT",
+    "INVOKE_RESOURCES_AND_TOOLS",
     "DISCOVER",
     "LOCATE_OWNING_SOURCE",
     "OPEN_SOURCE",
@@ -34,6 +55,9 @@
     "PROJECT_DOWNSTREAM"
   ],
   "hard_fail_rules": [
+    "MISSING_OPERATOR_RESOLUTION",
+    "MISSING_CONTEXT_RESOLUTION",
+    "RESOURCES_TOOLS_SKIPPED_WHEN_AVAILABLE_AND_MATERIAL",
     "MISSING_TRUTH_CLASS",
     "MISSING_REQUIRED_SOURCE_FOR_ESTABLISHED_FACT",
     "MISSING_VERIFICATION_RECEIPT",
