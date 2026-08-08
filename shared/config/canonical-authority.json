@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "case_id": "1FDV-23-0001009",
   "contract": "canonical-authority",
   "legal_powerhouse_role": "orchestration_gateway",
@@ -7,6 +7,19 @@
     "repository": "GlacierEQ/SUPERLUMINAL_CASE_MATRIX",
     "path": "CASEBRAIN_V3",
     "role": "normalized_reviewed_machine_authority"
+  },
+  "estate_catalog": {
+    "repository": "GlacierEQ/monolith",
+    "registry_path": "catalog/legal_spines/1FDV-23-0001009.json",
+    "index_path": "catalog/legal_spines/1FDV-23-0001009-index.json",
+    "discovery_candidates_path": "catalog/legal_spines/1FDV-23-0001009-discovery-candidates.json",
+    "role": "cartographic_control_plane_no_evidence_byte_ownership",
+    "observed_scope": {
+      "assigned_repositories": 47,
+      "discovery_candidates": 43,
+      "case_bearing_total": 90
+    },
+    "rule": "Monolith maps; owning repositories execute. Search matches and repository duplication do not establish factual corroboration."
   },
   "source_precedence": [
     "OPERATIVE_OFFICIAL_RECORD",
@@ -35,9 +48,12 @@
     "court_preparation": ["google-drive"],
     "raw_recovery": ["dropbox"],
     "human_governance": ["notion"],
+    "estate_cartography": ["GlacierEQ/monolith"],
     "orchestration": ["GlacierEQ/legal-powerhouse"]
   },
   "repository_mesh": {
+    "source": "GlacierEQ/monolith:catalog/legal_spines/1FDV-23-0001009.json",
+    "policy": "Use the Monolith legal spine as the exhaustive case-repository cartographic catalog; the entries below are high-value owning surfaces, not an exhaustive independent list.",
     "legal_data": [
       {"repository": "GlacierEQ/SUPERLUMINAL_CASE_MATRIX", "role": "canonical_machine_contract"},
       {"repository": "GlacierEQ/DOCKETS", "role": "docket_corpus_and_record_extraction"},
@@ -97,6 +113,8 @@
     "generated_probability_is_evidence": false,
     "memory_is_evidence": false,
     "work_product_is_evidence": false,
+    "repository_duplicate_is_independent_corroboration": false,
+    "search_match_is_relevance_proof": false,
     "filing_export_fail_closed_on_missing_truth_class": true,
     "filing_export_fail_closed_on_missing_required_source": true
   },
