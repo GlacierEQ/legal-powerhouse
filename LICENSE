@@ -1,26 +1,31 @@
-PROPRIETARY LICENSE
+PROPRIETARY AND CONFIDENTIAL LICENSE (APEX-TIER)
 
 Copyright (c) 2026 GlacierEQ. All rights reserved.
 
-This software and associated documentation files (the "Software") are
-proprietary and confidential to GlacierEQ.
+This software, associated documentation, architectural blueprints, and dynamic execution environments (collectively, the "Software") are the exclusive, proprietary, and confidential intellectual property of GlacierEQ. 
 
-The Software is licensed, not sold. Use, copying, modification, distribution,
-or reproduction of the Software without express written permission from
-GlacierEQ is strictly prohibited.
+The Software is licensed, not sold. Any unauthorized use, copying, modification, distribution, or reproduction of the Software—in whole or in part—is strictly prohibited and will be met with immediate legal enforcement.
 
-LIMITED LICENSE GRANT:
-- Private use within GlacierEQ systems is permitted
-- Public distribution, commercial use, or derivative works require written consent
-- Forking for public repositories is prohibited without authorization
+1. LIMITED LICENSE GRANT & RESTRICTIONS:
+- Private, internal use within authorized GlacierEQ systems is permitted.
+- Public distribution, commercial deployment, or the creation of derivative works requires express, executed written consent from GlacierEQ.
+- Forking, cloning, or mirroring to public or unauthorized private repositories is strictly prohibited.
+- Reverse engineering, decompilation, disassembly, or any attempt to extract the underlying source code, algorithms, or API routing structures (including the Monolith mapping and JIT mechanisms) is expressly forbidden.
 
-DISCLAIMER:
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+2. AI & TELEMETRY HARVESTING PROHIBITION:
+Scraping, crawling, or extracting this codebase for the purpose of training artificial intelligence models, large language models (LLMs), or data-mining algorithms by any third party (including but not limited to GitHub, OpenAI, Anthropic, or Google) is strictly prohibited.
 
-FOR LICENSING INQUIRIES:
+3. INTELLECTUAL PROPERTY & PRIOR ART:
+This license is bound to the Patent Disclosure and Notice of Prior Art detailed in the primary repository documentation. All methodologies (e.g., the Legal Spiral Engine, 4-Level Methodology) remain the sovereign IP of GlacierEQ.
+
+4. INJUNCTIVE RELIEF:
+You acknowledge that any breach of this License will cause irreparable harm to GlacierEQ for which monetary damages would be inadequate. GlacierEQ shall be entitled to seek immediate injunctive relief to prevent such breach, in addition to any other legal or equitable remedies.
+
+5. DISCLAIMER OF WARRANTY:
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+FOR LICENSING AND AUTHORIZATION INQUIRIES:
 Contact: GlacierEQ
-Repository: https://github.com/GlacierEQ/legal-powerhouse
+Registry: https://github.com/GlacierEQ/legal-powerhouse
 
-This license supersedes any other license files in this repository.
+This license unconditionally supersedes any other license, open-source tag, or legacy agreement in this repository.
