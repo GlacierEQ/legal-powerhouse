@@ -96,7 +96,7 @@ Repository duplication is not corroboration. Forks, backups, renamed successors,
 
 ## 4. Proposition contract
 
-Every material proposition SHOULD resolve to a machine object containing at least:
+Every material proposition **MUST** resolve to a machine object containing at least:
 
 - `proposition_id`
 - `case_id`
@@ -117,6 +117,8 @@ Every material proposition SHOULD resolve to a machine object containing at leas
 - `missing_proof[]`
 - `deployment_state`
 
+Incomplete proposition objects MUST be rejected before promotion or export. Missing `sensitivity_class`, `verification_receipt`, or `deployment_state` is a hard failure, not advisory metadata.
+
 No source locator means no promotion to `ESTABLISHED_RECORD_FACT`.
 
 ## 5. Repository mesh
@@ -128,6 +130,8 @@ The exhaustive cartographic source is the Monolith legal spine:
 - `GlacierEQ/monolith/catalog/legal_spines/1FDV-23-0001009-discovery-candidates.json`
 
 At the 2026-08-03 generation, it records **47 assigned repositories and 43 discovery candidates (90 total case-bearing repositories/candidates)**. The lists below identify high-value owning surfaces; they are not a second exhaustive inventory.
+
+Every repository projected by Legal Powerhouse MUST carry both a machine-stable `role` and an explicit `authority_level`. Consumers may not infer authority from category names or prose.
 
 ### Canonical legal-data / source-index lane
 
@@ -224,6 +228,7 @@ Before Legal Powerhouse labels its current case brain authoritative, it must:
 4. move probability/culpability fields into a non-evidentiary hypothesis namespace or remove them from filing-facing projections;
 5. emit contradiction nodes instead of silently resolving conflicting sources;
 6. verify that every repository projected as a source has an explicit role and authority level;
-7. make all filing/export paths fail closed when a required source, truth class, or legal-lane gate is absent.
+7. reject incomplete proposition objects before promotion/export;
+8. make all filing/export paths fail closed when a required source, truth class, or legal-lane gate is absent.
 
 **Canonical principle:** investigate broadly; preserve aggressively; classify precisely; prove before promotion.
