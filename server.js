@@ -27,9 +27,11 @@ const Mesh = require('./core/Level4_Mesh');
 const agents = require('./shared/config/agents.json');
 const documents = require('./shared/config/documents.json');
 const canonicalAuthority = require('./shared/config/canonical-authority.json');
+const internalInvestigator = require('./shared/config/internal-investigator.json');
 
 const CASE_ID = canonicalAuthority.case_id;
 const CANONICAL_MACHINE_CONTRACT = `${canonicalAuthority.canonical_machine_contract.repository}/${canonicalAuthority.canonical_machine_contract.path}`;
+const INTERNAL_INVESTIGATOR_CONFIG_ID = internalInvestigator.config_id;
 
 function validateAuthorityBinding() {
   const errors = [];
@@ -55,7 +57,41 @@ function validateAuthorityBinding() {
   }
 }
 
+function validateInternalInvestigatorBinding() {
+  const errors = [];
+  const expectedCanonicalSource = 'GlacierEQ/SUPERLUMINAL_CASE_MATRIX/CASEBRAIN_V3/control-plane/INTERNAL_INVESTIGATOR_CONFIG.json';
+
+  if (internalInvestigator.case_id !== CASE_ID) {
+    errors.push(`case_id mismatch: investigator=${internalInvestigator.case_id} authority=${CASE_ID}`);
+  }
+
+  if (internalInvestigator.mode !== 'INVESTIGATOR') {
+    errors.push(`unexpected mode: ${internalInvestigator.mode}`);
+  }
+
+  if (internalInvestigator.boot_required !== true) {
+    errors.push('boot_required must be true');
+  }
+
+  if (internalInvestigator.canonical_source !== expectedCanonicalSource) {
+    errors.push(`unexpected canonical_source: ${internalInvestigator.canonical_source}`);
+  }
+
+  if (!Array.isArray(internalInvestigator.boot_sequence) || internalInvestigator.boot_sequence.length < 5) {
+    errors.push('boot_sequence is incomplete');
+  }
+
+  if (!Array.isArray(internalInvestigator.hard_fail_rules) || internalInvestigator.hard_fail_rules.length === 0) {
+    errors.push('hard_fail_rules are missing');
+  }
+
+  if (errors.length > 0) {
+    throw new Error(`Internal investigator binding failed: ${errors.join('; ')}`);
+  }
+}
+
 validateAuthorityBinding();
+validateInternalInvestigatorBinding();
 
 app.use(cors());
 app.use(express.json());
@@ -75,6 +111,8 @@ function projectionBoundary(extra = {}) {
     case_id: CASE_ID,
     authority: 'UNVERIFIED_INTERNAL_PROJECTION',
     canonical_machine_contract: CANONICAL_MACHINE_CONTRACT,
+    investigator_config_id: INTERNAL_INVESTIGATOR_CONFIG_ID,
+    investigator_mode: internalInvestigator.mode,
     substantive_authority: 'AUTHENTICATED_ORIGINAL_OR_OPERATIVE_OFFICIAL_RECORD',
     promotion_state: 'BLOCKED_UNTIL_SOURCE_LINKED_AND_CONTRACT_VALIDATED',
     ...extra
@@ -96,9 +134,16 @@ function requireExplicitUnverifiedProjection(req, res, next) {
 app.get('/api/status', (req, res) => {
   res.json({
     name: 'Legal Powerhouse',
-    version: '1.1.0-authority-gated',
+    version: '1.2.0-investigator-gated',
     case: CASE_ID,
-    runtime_state: 'SOURCE_REQUIRED_FAIL_CLOSED',
+    runtime_state: 'INVESTIGATOR_SOURCE_REQUIRED_FAIL_CLOSED',
+    investigator: {
+      mode: internalInvestigator.mode,
+      config_id: INTERNAL_INVESTIGATOR_CONFIG_ID,
+      boot_required: internalInvestigator.boot_required,
+      canonical_source: internalInvestigator.canonical_source,
+      primary_directive: internalInvestigator.primary_directive
+    },
     authority: {
       canonical_machine_contract: CANONICAL_MACHINE_CONTRACT,
       estate_catalog: canonicalAuthority.estate_catalog,
@@ -110,7 +155,8 @@ app.get('/api/status', (req, res) => {
       fiat_justitia: { status: 'route_candidate', authority: 'work_product_and_research_only' },
       tower_of_babel: { status: 'route_candidate', authority: 'processing_only' },
       monolith: { status: 'catalog_bound', authority: 'cartography_only' },
-      casebrain: { status: 'external_canonical_contract', authority: CANONICAL_MACHINE_CONTRACT }
+      casebrain: { status: 'external_canonical_contract', authority: CANONICAL_MACHINE_CONTRACT },
+      investigator_config: { status: 'validated_at_startup', authority: internalInvestigator.canonical_source }
     },
     uptime: process.uptime(),
     timestamp: new Date().toISOString()
@@ -224,6 +270,14 @@ const v1Auth = (req, res, next) => {
 
 app.use('/api/v1', v1Auth);
 
+app.get('/api/v1/internal-config', (req, res) => {
+  res.json({
+    status: 'VALIDATED_AT_STARTUP',
+    canonical_machine_contract: CANONICAL_MACHINE_CONTRACT,
+    config: internalInvestigator
+  });
+});
+
 app.get('/api/v1/casebuilder', requireExplicitUnverifiedProjection, (req, res) => {
   const data = getCasebuilderData();
   if (!data) return res.status(404).json({ error: 'Casebuilder projection not found' });
@@ -253,6 +307,7 @@ app.post('/api/v1/omni-execute', async (req, res) => {
       return res.status(422).json({
         error: 'Canonical proposition gate failed',
         verification,
+        investigator_config_id: INTERNAL_INVESTIGATOR_CONFIG_ID,
         truth_boundary: 'No promotion, filing-readiness claim, or external synchronization occurred.'
       });
     }
@@ -262,6 +317,7 @@ app.post('/api/v1/omni-execute', async (req, res) => {
 
     res.json({
       status: 'CONTRACT_VALIDATED_LOCAL_ONLY',
+      investigator_config_id: INTERNAL_INVESTIGATOR_CONFIG_ID,
       truth_boundary: verification.verification_boundary,
       pipeline: {
         recruiter: squad,
@@ -320,7 +376,8 @@ wss.on('connection', (ws) => {
     type: 'welcome',
     message: 'Connected to Legal Powerhouse',
     case: CASE_ID,
-    runtime_state: 'SOURCE_REQUIRED_FAIL_CLOSED',
+    runtime_state: 'INVESTIGATOR_SOURCE_REQUIRED_FAIL_CLOSED',
+    investigator_config_id: INTERNAL_INVESTIGATOR_CONFIG_ID,
     canonical_machine_contract: CANONICAL_MACHINE_CONTRACT
   }));
 
@@ -334,8 +391,9 @@ wss.on('connection', (ws) => {
             type: 'status',
             data: {
               case: CASE_ID,
-              status: 'source_required_fail_closed',
+              status: 'investigator_source_required_fail_closed',
               readiness: null,
+              investigator_config_id: INTERNAL_INVESTIGATOR_CONFIG_ID,
               canonical_machine_contract: CANONICAL_MACHINE_CONTRACT
             }
           }));
@@ -369,14 +427,16 @@ const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, () => {
   console.log(`
-LEGAL POWERHOUSE v1.1.0-authority-gated
+LEGAL POWERHOUSE v1.2.0-investigator-gated
 Case: ${CASE_ID}
+Mode: ${internalInvestigator.mode}
+Internal config: ${INTERNAL_INVESTIGATOR_CONFIG_ID}
 Role: orchestration gateway; not an evidence store
 Canonical machine contract: ${CANONICAL_MACHINE_CONTRACT}
-Runtime: SOURCE_REQUIRED_FAIL_CLOSED
+Runtime: INVESTIGATOR_SOURCE_REQUIRED_FAIL_CLOSED
 HTTP: http://localhost:${PORT}
 WS: ws://localhost:${PORT}/ws
   `);
 });
 
-module.exports = { app, server, validateAuthorityBinding };
+module.exports = { app, server, validateAuthorityBinding, validateInternalInvestigatorBinding };
