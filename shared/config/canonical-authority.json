@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.2.1",
+  "case_id": "1FDV-23-0001009",
+  "contract": "canonical-authority",
+  "legal_powerhouse_role": "orchestration_gateway",
+  "canonical_machine_contract": {
+    "repository": "GlacierEQ/SUPERLUMINAL_CASE_MATRIX",
+    "path": "CASEBRAIN_V3",
+    "role": "normalized_reviewed_machine_authority"
+  },
+  "estate_catalog": {
+    "repository": "GlacierEQ/monolith",
+    "registry_path": "catalog/legal_spines/1FDV-23-0001009.json",
+    "index_path": "catalog/legal_spines/1FDV-23-0001009-index.json",
+    "discovery_candidates_path": "catalog/legal_spines/1FDV-23-0001009-discovery-candidates.json",
+    "role": "cartographic_control_plane_no_evidence_byte_ownership",
+    "observed_scope": {
+      "assigned_repositories": 47,
+      "discovery_candidates": 43,
+      "case_bearing_total": 90
+    },
+    "rule": "Monolith maps; owning repositories execute. Search matches and repository duplication do not establish factual corroboration."
+  },
+  "authority_levels": {
+    "T0_SUBSTANTIVE_SOURCE_EXTERNAL": "Authenticated originals and operative official records outside repository projections.",
+    "T1_CANONICAL_MACHINE": "Reviewed normalized CASEBRAIN state linked to higher-authority sources.",
+    "T2_SOURCE_INDEX_OR_CUSTODY_ADAPTER": "Source indexes, case packs, forensic working sets, archive/custody adapters requiring item-level authentication.",
+    "T3_CONTEXT_MEMORY": "Continuity and context only; never independent evidentiary authority.",
+    "T4_WORK_PRODUCT": "Drafts, legal theories, research, publication, and filing work product.",
+    "T5_TECHNOLOGY": "Processing, automation, connectors, validation, presentation, and planned-but-unverified custody systems; no independent case-fact authority."
+  },
+  "source_precedence": [
+    "OPERATIVE_OFFICIAL_RECORD",
+    "AUTHENTICATED_ORIGINAL_SOURCE",
+    "LOCALLY_COMPUTED_CRYPTOGRAPHIC_HASH_AND_SOURCE_METADATA",
+    "PERSONAL_KNOWLEDGE_DECLARATION",
+    "AUTHENTICATED_DERIVATIVE",
+    "PARTY_OR_ATTORNEY_WORK_PRODUCT",
+    "INTERNAL_SUMMARY_TASK_MEMORY_AI",
+    "UNSUPPORTED_OR_GENERATED_NARRATIVE"
+  ],
+  "truth_classes": [
+    "ESTABLISHED_RECORD_FACT",
+    "ORIGINAL_SOURCE_FACT",
+    "USER_ALLEGATION",
+    "SOURCE_SUMMARY",
+    "INFERENCE",
+    "LEGAL_HYPOTHESIS",
+    "DISPUTED",
+    "UNVERIFIED",
+    "SUPERSEDED",
+    "REJECTED"
+  ],
+  "planes": {
+    "evidence_custody": ["persistent-library", "restricted-box-proofbooks"],
+    "court_preparation": ["google-drive"],
+    "raw_recovery": ["dropbox"],
+    "human_governance": ["notion"],
+    "estate_cartography": ["GlacierEQ/monolith"],
+    "orchestration": ["GlacierEQ/legal-powerhouse"]
+  },
+  "repository_mesh": {
+    "source": "GlacierEQ/monolith:catalog/legal_spines/1FDV-23-0001009.json",
+    "policy": "Use the Monolith legal spine as the exhaustive case-repository cartographic catalog; the entries below are high-value owning surfaces, not an exhaustive independent list.",
+    "legal_data": [
+      {"repository": "GlacierEQ/SUPERLUMINAL_CASE_MATRIX", "role": "canonical_machine_contract", "authority_level": "T1_CANONICAL_MACHINE"},
+      {"repository": "GlacierEQ/DOCKETS", "role": "docket_corpus_and_record_extraction", "authority_level": "T2_SOURCE_INDEX_OR_CUSTODY_ADAPTER"},
+      {"repository": "GlacierEQ/CASE-1FDV-23-0001009", "role": "primary_case_pack", "authority_level": "T2_SOURCE_INDEX_OR_CUSTODY_ADAPTER"},
+      {"repository": "GlacierEQ/CASE-1FDV-23-0001009-LEAN", "role": "bounded_case_representation", "authority_level": "T2_SOURCE_INDEX_OR_CUSTODY_ADAPTER"},
+      {"repository": "GlacierEQ/CYBERTACK-1FDV-23-0001009", "role": "forensic_working_set", "authority_level": "T2_SOURCE_INDEX_OR_CUSTODY_ADAPTER"},
+      {"repository": "GlacierEQ/THE_CATACLYSM", "role": "source_archive_family", "authority_level": "T2_SOURCE_INDEX_OR_CUSTODY_ADAPTER"}
+    ],
+    "context_memory": [
+      {"repository": "GlacierEQ/AspenGrove-KEKOA-1FDV-23-0001009", "role": "case_context", "authority_level": "T3_CONTEXT_MEMORY"},
+      {"repository": "GlacierEQ/AEON-777", "role": "memory_and_exhibit_context", "authority_level": "T3_CONTEXT_MEMORY"},
+      {"repository": "GlacierEQ/AEON-BRAIN-777", "role": "memory_router", "authority_level": "T3_CONTEXT_MEMORY"}
+    ],
+    "work_product": [
+      {"repository": "GlacierEQ/case-1FDV-23-0001009-legal-documents", "role": "filing_packets", "authority_level": "T4_WORK_PRODUCT"},
+      {"repository": "GlacierEQ/1FDV-23-0001009-FEDERAL-WARFARE", "role": "federal_theory_work_product", "authority_level": "T4_WORK_PRODUCT"},
+      {"repository": "GlacierEQ/apex-legal-case", "role": "legal_case_work_product", "authority_level": "T4_WORK_PRODUCT"},
+      {"repository": "GlacierEQ/book-of-breach-hawaii-family-court", "role": "public_transparency_work_product", "authority_level": "T4_WORK_PRODUCT"},
+      {"repository": "GlacierEQ/CASE-LAW-ARSENAL", "role": "authority_research", "authority_level": "T4_WORK_PRODUCT"}
+    ],
+    "legal_technology": [
+      {"repository": "GlacierEQ/EVIDENCE-VAULT-ENCRYPTED", "role": "planned_evidence_custody_design_placeholder", "authority_level": "T5_TECHNOLOGY", "audit_state": "Documentation-only in inspected main/history on 2026-08-07; claimed evidence tree and 187-item inventory absent; QA manifest identifies simulation.", "promotion_gate": "Exact evidence object + provider/native identity + authenticated bytes/locator + locally computed hash + provenance + custody receipt."},
+      {"repository": "GlacierEQ/casey-legal-mcp-server", "role": "connector_runtime", "authority_level": "T5_TECHNOLOGY"},
+      {"repository": "GlacierEQ/hawaii-family-court-legal-automation", "role": "court_automation", "authority_level": "T5_TECHNOLOGY"},
+      {"repository": "GlacierEQ/hawaii-docket-automation", "role": "docket_automation", "authority_level": "T5_TECHNOLOGY"},
+      {"repository": "GlacierEQ/jefs-legal-ai-fortress", "role": "jefs_processing", "authority_level": "T5_TECHNOLOGY"},
+      {"repository": "GlacierEQ/legal-brief-pipeline", "role": "brief_pipeline", "authority_level": "T5_TECHNOLOGY"},
+      {"repository": "GlacierEQ/legal-motion-automation", "role": "motion_automation", "authority_level": "T5_TECHNOLOGY"},
+      {"repository": "GlacierEQ/FILEBOSS", "role": "file_governance_and_manifest", "authority_level": "T5_TECHNOLOGY"},
+      {"repository": "GlacierEQ/case-brain-unified-runtime", "role": "casebrain_runtime", "authority_level": "T5_TECHNOLOGY"},
+      {"repository": "GlacierEQ/unified-case-brain-web", "role": "human_projection", "authority_level": "T5_TECHNOLOGY"}
+    ]
+  },
+  "required_proposition_fields": [
+    "proposition_id",
+    "case_id",
+    "statement",
+    "truth_class",
+    "source_locators",
+    "source_object_ids",
+    "actor_ids",
+    "event_ids",
+    "docket_entry_ids",
+    "contradiction_ids",
+    "legal_element_ids",
+    "authentication_status",
+    "admissibility_posture",
+    "sensitivity_class",
+    "last_verified_at",
+    "verification_receipt",
+    "missing_proof",
+    "deployment_state"
+  ],
+  "promotion_rules": {
+    "incomplete_proposition_rejected_before_promotion_or_export": true,
+    "established_record_fact_requires_source_locator": true,
+    "conflict_requires_contradiction_node": true,
+    "generated_probability_is_evidence": false,
+    "memory_is_evidence": false,
+    "work_product_is_evidence": false,
+    "repository_duplicate_is_independent_corroboration": false,
+    "search_match_is_relevance_proof": false,
+    "filing_export_fail_closed_on_missing_truth_class": true,
+    "filing_export_fail_closed_on_missing_required_source": true
+  },
+  "privacy": {
+    "separate_1fdv_and_1fda": true,
+    "restricted_material_on_public_repo": false,
+    "public_projection_may_use_opaque_restricted_object_ids": true
+  }
+}

@@ -1,8 +1,11 @@
 {
   "title": "Legal Powerhouse Document Registry",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "case_id": "1FDV-23-0001009",
   "case_name": "Kekoa Barton - Hawaii Family Court",
+  "authority_contract": "shared/config/canonical-authority.json",
+  "canonical_machine_contract": "GlacierEQ/SUPERLUMINAL_CASE_MATRIX/CASEBRAIN_V3",
+  "orchestration_role": "gateway_not_evidence_store",
   
   "categories": {
     "motions": {
