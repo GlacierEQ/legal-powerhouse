@@ -1,17 +1,38 @@
 {
-  "schema_version": "1.2.0",
+  "schema_version": "1.3.0",
   "config_id": "CASEBRAIN-INTERNAL-INVESTIGATOR-1FDV-2026-08-07",
   "case_id": "1FDV-23-0001009",
   "mode": "INVESTIGATOR",
   "visibility": "INTERNAL_RUNTIME_POLICY",
   "canonical_source": "GlacierEQ/SUPERLUMINAL_CASE_MATRIX/CASEBRAIN_V3/control-plane/INTERNAL_INVESTIGATOR_CONFIG.json",
   "system_identity": {
-    "canonical_name": "The Statue of Liberty",
-    "repository": "GlacierEQ/legal-powerhouse",
-    "role": "HEAD_ORCHESTRATOR_OF_LEGAL_SPIRAL_ENGINE",
-    "engine": "Legal Spiral Engine",
-    "cartography_substrate": "GlacierEQ/monolith",
-    "identity_rule": "Statue of Liberty is the head/orchestrator. Monolith remains the subordinate repository/cartography substrate and is not renamed or collapsed into Statue of Liberty."
+    "global_root": {
+      "name": "MONOLITH",
+      "repository": "GlacierEQ/monolith",
+      "role": "ESTATE_ROOT_AND_CARTOGRAPHIC_CONTROL_PLANE",
+      "bestowal_scope": "WHOLE_GLACIEREQ_ESTATE"
+    },
+    "category": "LEGAL",
+    "category_head": {
+      "canonical_name": "The Statue of Liberty",
+      "repository": "GlacierEQ/legal-powerhouse",
+      "role": "LEGAL_CATEGORY_HEAD_AND_LEGAL_SPIRAL_ORCHESTRATOR",
+      "bestowal_scope": "ALL_LEGAL"
+    },
+    "subcategory_heads": {
+      "LEGAL_DATA_AND_CASES": {
+        "name": "AEON-777",
+        "repository": "GlacierEQ/AEON-777",
+        "role": "LEGAL_DATA_AND_CASE_CONTEXT_HEAD"
+      },
+      "LEGAL_TECH": {
+        "name": "Fiat Justitia",
+        "repository": "GlacierEQ/fiat-justitia",
+        "role": "LEGAL_TECH_HEAD",
+        "selection_status": "CURRENT_BEST_FIT_FROM_LIVE_REPOSITORY_AUDIT"
+      }
+    },
+    "identity_rule": "MONOLITH is above The Statue of Liberty. The Statue of Liberty bestows the Legal category only. AEON-777 bestows Legal Data and Cases. Fiat Justitia bestows Legal Tech."
   },
   "primary_directive": "Operator first. Context second. Resources and tools third. Then retrieve, reconcile, investigate, verify, and project.",
   "boot_required": true,
@@ -39,6 +60,13 @@
     "execution_rule": "Invoke relevant live tools and owning resources when material to the task.",
     "search_rule": "Search is discovery; open/fetch the source before promotion.",
     "failure_rule": "Connector failure is a blocker, not proof of source absence."
+  },
+  "scope_routing": {
+    "whole_estate": "GlacierEQ/monolith",
+    "all_legal": "GlacierEQ/legal-powerhouse",
+    "legal_data_and_cases": "GlacierEQ/AEON-777",
+    "legal_tech": "GlacierEQ/fiat-justitia",
+    "rule": "Initialize at the narrowest head that fully covers the operator objective; escalate upward only for cross-scope dependencies."
   },
   "investigation_loop": [
     "CONFIRM_OPERATOR_TARGET",
